@@ -1,0 +1,707 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/myfavicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="原创：  【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析） 【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）目录1. 模型下载baichuan2的github上给出的示例代码很简单，直接使用AutoModel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yajing luo&#39;s blog">
+<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90baichuan2%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E7%BB%8F%E9%AA%8C%E3%80%91%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8baichuan2-7b-chat%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD+%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE+%E6%8A%A5%E9%94%99%E5%88%86%E6%9E%90%EF%BC%89/index.html">
+<meta property="og:site_name" content="yajing luo&#39;s blog">
+<meta property="og:description" content="原创：  【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析） 【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）目录1. 模型下载baichuan2的github上给出的示例代码很简单，直接使用AutoModel">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/5abb69f4a5209e941aff85a978d8f70d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/63b0ebcc0fde63b4134fbd706c7c77ba.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/6b929cf3e2059773bd71bc6f9c3d6161.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/6f7b5855c2da5ed4e71a8097a739bd71.png">
+<meta property="article:published_time" content="2024-11-23T08:44:26.533Z">
+<meta property="article:modified_time" content="2024-11-23T07:12:23.914Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/blog_migrate/5abb69f4a5209e941aff85a978d8f70d.png">
+  
+  
+  
+  <title>yajing luo&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fany Full&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-23 16:44" pubdate>
+          2024年11月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          757 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）</p>
+<h1 id="【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载-环境配置-报错分析）"><a href="#【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载-环境配置-报错分析）" class="headerlink" title="【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）"></a>【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）</h1><h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><h2 id="1-模型下载"><a href="#1-模型下载" class="headerlink" title="1. 模型下载"></a>1. 模型下载</h2><p>baichuan2的<a target="_blank" rel="noopener" href="https://github.com/baichuan-inc/Baichuan2?tab=readme-ov-file#%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83">github</a>上给出的示例代码很简单，直接使用AutoModelForCausaLLM.from_pretrained(模型名称）这行代码就可以使用了，然而<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/5abb69f4a5209e941aff85a978d8f70d.png" srcset="/img/loading.gif" lazyload/><br/> 殊不知在服务器上运行代码，没开代理的话，huggingface.co是连接不上的！因此我们需要把模型下载到本地。如果在huggingface模型库界面一个个文件手动下载效率太低，我在这篇文章中【 <a target="_blank" rel="noopener" href="http://t.csdnimg.cn/6Shy1">从服务器上直接下载huggingface模型，解决huggingface无法连接问题</a>】给出了使用代码下载的方式，可以点击阅读。</p>
+<h2 id="2-环境配置"><a href="#2-环境配置" class="headerlink" title="2. 环境配置"></a>2. 环境配置</h2><p>新建conda虚拟环境，下载配置文件。运行pip install -r requirements.txt<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/63b0ebcc0fde63b4134fbd706c7c77ba.png" srcset="/img/loading.gif" lazyload/></p>
+<h2 id="3-报错分析"><a href="#3-报错分析" class="headerlink" title="3. 报错分析"></a>3. 报错分析</h2><p>本以为就这么简单结束了，结果遇到一堆报错。解决如下</p>
+<h3 id="1-AttributeError-module-‘torch-backends-cuda’-has-no-attribute-‘sdp-kernel’"><a href="#1-AttributeError-module-‘torch-backends-cuda’-has-no-attribute-‘sdp-kernel’" class="headerlink" title="1. AttributeError: module ‘torch.backends.cuda’ has no attribute ‘sdp_kernel’"></a>1. AttributeError: module ‘torch.backends.cuda’ has no attribute ‘sdp_kernel’</h3><p>【原因分析】要使用torch2.0版本才能正常运行，我之前的版本是1.几的。<br/> 【解决】重新建一个python&#x3D;3.10的虚拟环境，安装torch2.0<br/> 在<a target="_blank" rel="noopener" href="https://download.pytorch.org/whl/cu118/torch/">这个网站</a>上选择相应版本的torch安装包。我选择的是第一个，即torch2.0版本+cuda11.8+python3.10，并且是linux系统的。(win_amd64指的是windows系统）<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/6b929cf3e2059773bd71bc6f9c3d6161.png" srcset="/img/loading.gif" lazyload/><br/> 右键选择复制链接，然后在之前安装好的conda环境中，输入wget + 链接进行下载。如</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">wget</span> https://download.pytorch.org/whl/cu118/torch-<span class="hljs-number">2</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>%<span class="hljs-number">2</span>Bcu118-cp310-cp310-linux_x86_64.whl#sha256=<span class="hljs-number">4</span>b690e2b77f21073500c65d8bb9ea9656b8cb4e969f357370bbc992a3b074764<br><br></code></pre></td></tr></table></figure>
+
+<p>下载结束后使用pip install 安装包名字.whl 进行安装</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pip</span> install torch-<span class="hljs-number">2</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>+cu118-cp310-cp310-linux_x86_64.whl <br><br></code></pre></td></tr></table></figure>
+
+<p>输入python进入python环境，输入torch.__version__进行查询</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">python<br>torch.<span class="hljs-emphasis">__version__</span><br><br></code></pre></td></tr></table></figure>
+
+<p>结果如图所示：<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/6f7b5855c2da5ed4e71a8097a739bd71.png" srcset="/img/loading.gif" lazyload/></p>
+<h3 id="2-AttributeError-‘BaichuanTokenizer’-object-has-no-attribute-‘sp-model’"><a href="#2-AttributeError-‘BaichuanTokenizer’-object-has-no-attribute-‘sp-model’" class="headerlink" title="2. AttributeError: ‘BaichuanTokenizer’ object has no attribute ‘sp_model’"></a>2. AttributeError: ‘BaichuanTokenizer’ object has no attribute ‘sp_model’</h3><p>【解决方案】使用4.33.3版本的transformers</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pip</span> install transformers==<span class="hljs-number">4</span>.<span class="hljs-number">33</span>.<span class="hljs-number">3</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-RuntimeError-Failed-to-import-transformers-modeling-utils-because-of-the-following-error-look-up-to-see-its-traceback"><a href="#3-RuntimeError-Failed-to-import-transformers-modeling-utils-because-of-the-following-error-look-up-to-see-its-traceback" class="headerlink" title="3. RuntimeError: Failed to import transformers.modeling_utils because of the following error (look up to see its traceback):"></a>3. RuntimeError: Failed to import transformers.modeling_utils because of the following error (look up to see its traceback):</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">CUDA Setup failed despite GPU being available. Please run <span class="hljs-keyword">the</span> following <span class="hljs-keyword">command</span> <span class="hljs-title">to</span> <span class="hljs-title">get</span> <span class="hljs-title">more</span> <span class="hljs-title">information</span>:<br><br>python -m bitsandbytes<br><br>Inspect <span class="hljs-keyword">the</span> output <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> <span class="hljs-keyword">command</span> <span class="hljs-title">and</span> <span class="hljs-title">see</span> <span class="hljs-title">if</span> <span class="hljs-title">you</span> <span class="hljs-title">can</span> <span class="hljs-title">locate</span> <span class="hljs-title">CUDA</span> <span class="hljs-title">libraries</span>. <span class="hljs-title">You</span> <span class="hljs-title">might</span> <span class="hljs-title">need</span> <span class="hljs-title">to</span> <span class="hljs-title">add</span> <span class="hljs-title">them</span><br><span class="hljs-built_in">to</span> your LD_LIBRARY_PATH. If you suspect <span class="hljs-keyword">a</span> bug, please take <span class="hljs-keyword">the</span> information <span class="hljs-built_in">from</span> python -m bitsandbytes<br><span class="hljs-keyword">and</span> <span class="hljs-built_in">open</span> <span class="hljs-keyword">an</span> issue <span class="hljs-keyword">at</span>: <span class="hljs-keyword">https</span>://github.com/TimDettmers/bitsandbytes/issues<br><br></code></pre></td></tr></table></figure>
+
+<p>因为cuda版本和torch不匹配（之前只下载了torch2.0,但没有配置相应的cuda11.8版本），执行以下代码安装cuda11.8</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">conda</span> install cuda -c nvidia/label/cuda-<span class="hljs-number">11</span>.<span class="hljs-number">8</span>.<span class="hljs-number">0</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-torch-cuda-OutOfMemoryError-CUDA-out-of-memory"><a href="#4-torch-cuda-OutOfMemoryError-CUDA-out-of-memory" class="headerlink" title="4. torch.cuda.OutOfMemoryError: CUDA out of memory."></a>4. torch.cuda.OutOfMemoryError: CUDA out of memory.</h3><p>Tried to allocate 192.00 MiB (GPU 0; 31.75 GiB total capacity; 30.58 GiB already allocated; 49.50 MiB free; 30.73 GiB reserved in total by PyTorch) If reserved memory is &gt;&gt; allocated memory try setting max_split_size_mb to avoid fragmentation. See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF<br/> 【原因分析】之前提交任务的时候只使用了单张内存为32G的V100卡，内存不足，需要指定两张卡来执行<br/> 【解决】我这里的是多人GPU服务器，提交任务使用的是LSF调度系统，参考提交任务的run.sh代码为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">/bin/bash</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">BSUB -J 任务名称</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">BSUB -e /nfsshare/home/xxx/log/NAME_%J.err 报错日志路径</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">BSUB -o /nfsshare/home/xxx/log/NAME_%J.out 输出日志路径</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">BSUB -n 2 指定2块GPU</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">BSUB -q gpu 使用GPU序列</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">BSUB -m gpu01 用01号GOU</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">BSUB -R <span class="hljs-string">&quot;rusage[ngpus_physical=2]&quot;</span></span> <br><span class="hljs-meta prompt_">#</span><span class="language-bash">BSUB -gpu <span class="hljs-string">&quot;num=2:mode=exclusive_process&quot;</span></span> <br><br></code></pre></td></tr></table></figure>
+
+<p>内容来源：csdn.net</p>
+<p>作者昵称：凌漪_</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/134903717">https://blog.csdn.net/a61022706/article/details/134903717</a></p>
+<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/11/23/原创--  【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90linux%E3%80%91%E6%89%A7%E8%A1%8Cbash%E6%96%87%E4%BB%B6%E5%90%8E%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E7%BB%88%E7%AB%AF%E6%89%93%E5%8D%B0%E5%87%BA%E6%9D%A5%E7%9A%84%E8%BE%93%E5%87%BA%E5%92%8C%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%5B%E5%B7%B2%E8%A7%A3%E5%86%B3%5D%20flash-attn%E6%8A%A5%E9%94%99flash_attn_2_cuda.cpython-310-x86_64-linux-gnu.so-%20undefined%20symbol/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,697 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/myfavicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="原创：  【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载] 【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]课程作业中的网站要实现后台，需要进行数据库连接。记录连接过程及掉进去的坑。  在Eclips中新建一个动态网站，输入项目名称。 File - New - Dynamic Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yajing luo&#39;s blog">
+<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E5%82%BB%E7%93%9C%E6%95%99%E7%A8%8B%E3%80%91jsp%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E5%8F%8A%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%A9%BA%E6%8C%87%E9%92%88%E7%9A%84%E5%9D%91%E3%80%82[%E9%99%84java%E4%B8%8EMysql%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD]/index.html">
+<meta property="og:site_name" content="yajing luo&#39;s blog">
+<meta property="og:description" content="原创：  【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载] 【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]课程作业中的网站要实现后台，需要进行数据库连接。记录连接过程及掉进去的坑。  在Eclips中新建一个动态网站，输入项目名称。 File - New - Dynamic Web">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/c2929be4ad216cf1050c89782cb3b077.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/be80bc3d41965808577364a8513d4d91.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/cce6b88241831b43b300f9c3e86b6fe5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/0d17e2f97ad95cb73ef38f9cd0914e3e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/e23baccba7b87f5d3f8b0caeada5304e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/a17617347294450ea2df25f0707f0a04.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/70983fce402463fddcfa8dc1ec44ee5f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/62a6899e53c687d0598e39662c12d919.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/1d348210fcbfc04c2b3c563dc182ab51.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/07bba0553db62699b7b43b61b87281aa.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/0f8e2ada6e70d2ed32050f63aee37b74.png">
+<meta property="article:published_time" content="2024-11-23T08:44:26.546Z">
+<meta property="article:modified_time" content="2024-11-23T07:12:32.427Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/blog_migrate/c2929be4ad216cf1050c89782cb3b077.png">
+  
+  
+  
+  <title>yajing luo&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fany Full&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-23 16:44" pubdate>
+          2024年11月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          987 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]</p>
+<h1 id="【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。-附java与Mysql驱动程序下载"><a href="#【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。-附java与Mysql驱动程序下载" class="headerlink" title="【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]"></a>【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]</h1><p>课程作业中的网站要实现后台，需要进行数据库连接。记录连接过程及掉进去的坑。</p>
+<ol>
+<li>在Eclips中新建一个动态网站，输入项目名称。<br/> File - New - Dynamic Web Project<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/c2929be4ad216cf1050c89782cb3b077.png" srcset="/img/loading.gif" lazyload/> 1.  右击项目，新建一个jsp文件<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/be80bc3d41965808577364a8513d4d91.png" srcset="/img/loading.gif" lazyload/> 1.  通过Workbench来新建数据库。首先打开workbench，进入默认的数据库连接中。<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/cce6b88241831b43b300f9c3e86b6fe5.png" srcset="/img/loading.gif" lazyload/> 1.  在左侧nevigator导航栏中右击，新建一个Schema，输入数据库名称。我的数据库名称是program。<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/0d17e2f97ad95cb73ef38f9cd0914e3e.png" srcset="/img/loading.gif" lazyload/> 1.  双击建好的Schema，使其变黑，单击进入后选择table，右击新建表。我的表名称是new_table<img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/e23baccba7b87f5d3f8b0caeada5304e.png" srcset="/img/loading.gif" lazyload/> 1.  <strong>新建表时会发现没办法新建列，是需要点右上角的这两个上箭头。实在是太坑了。</strong><br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/a17617347294450ea2df25f0707f0a04.png" srcset="/img/loading.gif" lazyload/> 1.  建好表之后，右击选择select rows，然后可以输入表的内容。 1.  将mysql的纯java数据库驱动程序“mysql-connector-java-5.1.45-bin.jar”复制到web文件夹的WEB-INF&#x2F;lib目录下。（驱动程序附下载，见文末[^1]）<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/70983fce402463fddcfa8dc1ec44ee5f.png" srcset="/img/loading.gif" lazyload/> 1.  重点来了，通过Jsp来连接数据库，代码如下 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>%@ page <span class="hljs-attr">language</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;java&quot;</span> contentT<span class="hljs-attr">ype</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;text/html; charset=UTF-8&quot;</span> pageE<span class="hljs-attr">ncoding</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;UTF-8&quot;</span>%<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>%@ page <span class="hljs-attr">import</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;java.sql.*&quot;</span>%<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>!DOCTYPE html<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>html<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>head<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>meta <span class="hljs-attr">charset</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;UTF-8&quot;</span><span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>title<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span>访问MySQL数据库<span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>/title<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>/head<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>body<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br>	<span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>%<br>		Connection <span class="hljs-attr">con</span> <span class="hljs-operator">=</span> <span class="hljs-attr">null</span><span class="hljs-punctuation">;</span><br>		Statement <span class="hljs-attr">st</span> <span class="hljs-operator">=</span> <span class="hljs-attr">null</span><span class="hljs-punctuation">;</span><br>		ResultSet <span class="hljs-attr">rs</span> <span class="hljs-operator">=</span> <span class="hljs-attr">null</span><span class="hljs-punctuation">;</span><br>		<span class="hljs-comment">//加载驱动</span><br>		<span class="hljs-title class_">try</span> <span class="hljs-punctuation">&#123;</span><br>			Class.forName(<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span>)<span class="hljs-punctuation">;</span><br>		<span class="hljs-punctuation">&#125;</span> catch (ClassNotFoundException e) <span class="hljs-punctuation">&#123;</span><br>			e.printStackTrace()<span class="hljs-punctuation">;</span><br>		<span class="hljs-punctuation">&#125;</span><br>		out.print(<span class="hljs-string">&quot;sa&quot;</span>)<span class="hljs-punctuation">;</span><br>		<span class="hljs-title class_">try</span> <span class="hljs-punctuation">&#123;</span><br>			<span class="hljs-comment">//前面都是一致的操作，可以直接复制粘贴，从建立连接开始要根据自己的数据库名称，用户名和密码来进行。</span><br>			<span class="hljs-comment">//建立连接。“jdbc:mysql://localhost:3306/+数据库名+?characterEncoding=utf-8&quot;,用户名，密码</span><br><span class="hljs-attr">con</span><span class="hljs-operator">=</span>DriverManager.getConnection(<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/program?characterEncoding=utf-8&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>,<span class="hljs-string">&quot;123456&quot;</span>)<span class="hljs-punctuation">;</span><br>			<span class="hljs-attr">st</span> <span class="hljs-operator">=</span> con.createStatement()<span class="hljs-punctuation">;</span><br>			<span class="hljs-comment">//发送查询SQL语句，返回结果集</span><br>			<span class="hljs-attr">rs</span> <span class="hljs-operator">=</span> st.executeQuery(<span class="hljs-string">&quot;select * from new_table &quot;</span>)<span class="hljs-punctuation">;</span><br>			while(rs.next())<span class="hljs-punctuation">&#123;</span><br>				out.print(rs.getString(<span class="hljs-string">&quot;id&quot;</span>) + <span class="hljs-string">&quot;&amp;amp;nbsp;&amp;amp;nbsp;&quot;</span>)<span class="hljs-punctuation">;</span><br>				out.print(rs.getString(<span class="hljs-string">&quot;year&quot;</span>) + <span class="hljs-string">&quot;&amp;amp;nbsp;&amp;amp;nbsp;&quot;</span>)<span class="hljs-punctuation">;</span><br>				out.print(rs.getString(<span class="hljs-string">&quot;name&quot;</span>) + <span class="hljs-string">&quot;&amp;amp;nbsp;&amp;amp;nbsp;&quot;</span>)<span class="hljs-punctuation">;</span><br>				out.print(<span class="hljs-string">&quot;&amp;lt;br&amp;gt;&quot;</span>)<span class="hljs-punctuation">;</span><br>			<span class="hljs-punctuation">&#125;</span>  <br>		<span class="hljs-punctuation">&#125;</span> catch (SQLException e) <span class="hljs-punctuation">&#123;</span><br>			e.printStackTrace()<span class="hljs-punctuation">;</span><br>		<span class="hljs-punctuation">&#125;</span>finally<span class="hljs-punctuation">&#123;</span><br>			rs.close()<span class="hljs-punctuation">;</span><br>			st.close()<span class="hljs-punctuation">;</span><br>			con.close()<span class="hljs-punctuation">;</span><br>		<span class="hljs-punctuation">&#125;</span>	<br>	%<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>/body<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><span class="hljs-variable">&amp;lt</span><span class="hljs-punctuation">;</span>/html<span class="hljs-variable">&amp;gt</span><span class="hljs-punctuation">;</span><br><br></code></pre></td></tr></table></figure></li>
+<li>本来以为到这里应该结束了，但谁知道一直无法打印数据库的内容。报错显示在rs.close()这里出现异常，通过代码测试if(rs &#x3D;&#x3D; null){out.print(“rs is null”);}，发现确实rs为空，而且也提示有NullPointerException空指针错误。核心原因提示Unable to load authentication plugin caching_sha2_password 。虽然不知道这是个什么鬼东西。思来想去一整天，觉得怎么可能数据库没连上呢？甚至吧workbench重装了还是一样。在网上找了n多教程，终于找到了。<br/> **原来是因为从MySQL 8.0.4开始, 默认的认证插件从mysql_native_password 变为caching_sha2_password. 需要进入mysql命令行来执行如下语句。并注意把你的用户名和密码替换掉。<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;yourusername&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="hljs-keyword">WITH</span> mysql_native_password <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;youpassword&#x27;</span>;<br><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>TIPS：不会进入mysql命令行的傻瓜教程：<br/> 12. 管理员身份运行cmd,在文件夹中找到mysql,选择Bin目录并进入<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/62a6899e53c687d0598e39662c12d919.png" srcset="/img/loading.gif" lazyload/><br/> 13. 输入mysql -uroot -p和密码，进入Mysql<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/1d348210fcbfc04c2b3c563dc182ab51.png" srcset="/img/loading.gif" lazyload/><br/> 14. 输入上述更改密码的指令<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/07bba0553db62699b7b43b61b87281aa.png" srcset="/img/loading.gif" lazyload/><br/> 15. 这时再运行jsp代码，就不会再报错啦！5555终于可以正常显示内容了，我都要哭了。<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/0f8e2ada6e70d2ed32050f63aee37b74.png" srcset="/img/loading.gif" lazyload/></p>
+<p>附：<br/> <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1mzegJAj-ETrZG3wFx1a-RA">驱动下载地址</a><br/> 提取码: g7c9</p>
+<p>内容来源：csdn.net</p>
+<p>作者昵称：凌漪_</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/115982283">https://blog.csdn.net/a61022706/article/details/115982283</a></p>
+<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/11/23/原创--  【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E6%96%87%E6%9C%AC%E5%8E%BB%E9%87%8D%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%90%86%E8%A7%A3Minhash%E7%AE%97%E6%B3%95/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E8%B6%85%E7%AE%80%E6%98%93%E5%AE%89%E8%A3%85%E3%80%91%E5%9C%A8linux%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8conda%E5%AE%89%E8%A3%85%E9%AB%98%E7%89%88%E6%9C%ACcuda(cuda-11.8)%E5%92%8Cpytorch2.0/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
