@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -16,24 +16,24 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原创：  温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？ 温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？问题描述调用openai API，使用templature &#x3D; 0，每次返回的内容仍有一些不同 12345678910111213141516&amp;gt;&amp;gt;&amp;gt; client &#x3D; Op">
+    <meta name="description" content="问题描述调用openai API，使用templature &#x3D; 0，每次返回的内容仍有一些不同 12345678910111213141516&amp;gt;&amp;gt;&amp;gt; client &#x3D; OpenAI(...             api_key&#x3D;api_key,...             base_url&#x3D;api_base)#第一次尝试&amp;gt;&amp;am">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yajing luo&#39;s blog">
-<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E6%B8%A9%E5%BA%A6%E8%99%BD%E5%AF%92%EF%BC%8C%E5%85%B6%E9%81%93%E7%8A%B9%E5%8F%98-OpenAI%E6%8E%A5%E5%8F%A3%E4%B9%8B%E6%B8%A9%E5%BA%A6%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%BA0%EF%BC%8C%E4%B8%BA%E4%BD%95%E6%AF%8F%E6%AC%A1%E5%9B%9E%E5%A4%8D%E4%BB%8D%E6%9C%89%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%EF%BC%9F/index.html">
-<meta property="og:site_name" content="yajing luo&#39;s blog">
-<meta property="og:description" content="原创：  温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？ 温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？问题描述调用openai API，使用templature &#x3D; 0，每次返回的内容仍有一些不同 12345678910111213141516&amp;gt;&amp;gt;&amp;gt; client &#x3D; Op">
+<meta property="og:title" content="温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？">
+<meta property="og:url" content="https://abigail61.github.io/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E6%B8%A9%E5%BA%A6%E8%99%BD%E5%AF%92%EF%BC%8C%E5%85%B6%E9%81%93%E7%8A%B9%E5%8F%98-OpenAI%E6%8E%A5%E5%8F%A3%E4%B9%8B%E6%B8%A9%E5%BA%A6%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%BA0%EF%BC%8C%E4%B8%BA%E4%BD%95%E6%AF%8F%E6%AC%A1%E5%9B%9E%E5%A4%8D%E4%BB%8D%E6%9C%89%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Abigail&#39;s blog">
+<meta property="og:description" content="问题描述调用openai API，使用templature &#x3D; 0，每次返回的内容仍有一些不同 12345678910111213141516&amp;gt;&amp;gt;&amp;gt; client &#x3D; OpenAI(...             api_key&#x3D;api_key,...             base_url&#x3D;api_base)#第一次尝试&amp;gt;&amp;am">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-23T08:44:26.587Z">
-<meta property="article:modified_time" content="2024-11-23T07:12:11.624Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2024-11-23T13:36:18.951Z">
+<meta property="article:author" content="Yajing Luo">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>yajing luo&#39;s blog</title>
+  <title>温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？ - Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"abigail61.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"python"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -101,7 +101,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fany Full&#39;s Blog</strong>
+      <strong>Abigail&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -197,13 +197,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？"></span>
           
         </div>
 
@@ -227,7 +227,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.9k 字
+          2.8k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
           <!-- compatible with older versions-->
-          25 分钟
+          24 分钟
         
       </span>
     
@@ -276,13 +276,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？</p>
-<h1 id="温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？"><a href="#温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？" class="headerlink" title="温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？"></a>温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>调用openai API，使用templature &#x3D; 0，每次返回的内容仍有一些不同</p>
+                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>调用openai API，使用templature &#x3D; 0，每次返回的内容仍有一些不同</p>
 <figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sas"><span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>; client = OpenAI(<br>...             api_key=api_key,<br>...             base_url=api_base)<br>#第一次尝试<br><span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>; response = client.chat.completions.<span class="hljs-keyword">create</span>(model=<span class="hljs-string">&#x27;gpt-3.5-turbo&#x27;</span>,messages=[&#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;who are you&quot;</span>&#125;],temperature=0)<br><span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>; response.choices[0].<span class="hljs-keyword">message</span>.content<br><span class="hljs-string">&#x27;I am an artificial intelligence assistant created to help answer questions and provide information. How can I assist you today?&#x27;</span><br>#第二次尝试<br><span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>; response = client.chat.completions.<span class="hljs-keyword">create</span>(model=<span class="hljs-string">&#x27;gpt-3.5-turbo&#x27;</span>,messages=[&#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;who are you&quot;</span>&#125;],temperature=0)<br><span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>; response.choices[0].<span class="hljs-keyword">message</span>.content<br><span class="hljs-string">&#x27;I am an AI assistant designed to help answer questions and provide information to the best of my abilities. How can I assist you today?&#x27;</span><br>#第三次尝试<br><span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>; response = client.chat.completions.<span class="hljs-keyword">create</span>(model=<span class="hljs-string">&#x27;gpt-3.5-turbo&#x27;</span>,messages=[&#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;who are you&quot;</span>&#125;],temperature=0)<br><span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;gt</span>; response.choices[0].<span class="hljs-keyword">message</span>.content<br><span class="hljs-string">&#x27;I am a language model AI created to assist with answering questions and engaging in conversations.&#x27;</span><br><br></code></pre></td></tr></table></figure>
 
 <p>可以发现多次调用api进行文本生成，得到的回复有些许差别</p>
@@ -331,10 +330,13 @@ Token D: -0.1/0.5 = -0.2
 <p>经chatGPT分析，可以有14种：</p>
 <figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs excel">这段内容包含了多种语言的单词和短语，包括但不限于以下几种：<br><br>中文：例如“明确工具”、“果-<span class="hljs-built_in">price</span> packet”、“果-果-服务要求”、“再选择”等。<br>日文：例如“独”、“形成”、“通知”等。<br>韩文：例如“모든”、“차리”、“결정”等。<br>阿拉伯文：例如“مر”、“ملفات”、“عادة”、“هناك”等。<br>印地文/马拉地文：例如“खास”、“लड”、<span class="hljs-string">&quot;पर&quot;</span>。<br>俄文：例如“приходится”、“очень”、“проекты”等。<br>希腊文：例如“πρώτος”、“είναι”等。<br>希伯来文：例如“לחזור”、“למד”、“החלטה”等。<br>英语：例如“manager”、“field”、“yellow”等。<br>德文：例如“anzugeben”、“Ziel”等。<br>法文：例如“prix”、“travaux”、“développement”等。<br>意大利文：例如“selezionare”等。<br>西班牙文：例如“página”、“devolució<span class="hljs-built_in">n</span>”等。<br>葡萄牙文：例如“opção”等。<br>这段内容看起来像是多个语言元素的随机组合。<br><br></code></pre></td></tr></table></figure>
 
-<p>内容来源：csdn.net</p>
-<p>作者昵称：凌漪_</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/143690449">https://blog.csdn.net/a61022706/article/details/143690449</a></p>
-<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
+
+
+
+
+
+
+
 
                 
               </div>
@@ -352,14 +354,14 @@ Token D: -0.1/0.5 = -0.2
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/11/23/原创--  温度虽寒，其道犹变-OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？/</div>
+      <div>温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？</div>
+      <div>https://abigail61.github.io/2024/11/23/原创--  温度虽寒，其道犹变-OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Yajing Luo</div>
         </div>
       
       
@@ -397,9 +399,9 @@ Token D: -0.1/0.5 = -0.2
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%89%93%E4%B8%8D%E5%BC%80%EF%BC%8C%E6%98%BE%E7%A4%BA%E5%87%BD%E6%95%B0%E4%B8%8D%E6%AD%A3%E7%A1%AE/" title="">
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%89%93%E4%B8%8D%E5%BC%80%EF%BC%8C%E6%98%BE%E7%A4%BA%E5%87%BD%E6%95%B0%E4%B8%8D%E6%AD%A3%E7%A1%AE/" title="移动硬盘分区打不开，显示函数不正确">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">移动硬盘分区打不开，显示函数不正确</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -407,8 +409,8 @@ Token D: -0.1/0.5 = -0.2
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8vscode%E4%B8%AD%E5%AF%B9%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%A4%9A%E5%8D%A1%E8%BF%90%E8%A1%8C%E7%9A%84bash%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8Cdebug-/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8vscode%E4%B8%AD%E5%AF%B9%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%A4%9A%E5%8D%A1%E8%BF%90%E8%A1%8C%E7%9A%84bash%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8Cdebug-/" title="如何在vscode中对在服务器上多卡运行的bash脚本进行debug?">
+                        <span class="hidden-mobile">如何在vscode中对在服务器上多卡运行的bash脚本进行debug?</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -16,27 +16,24 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原创：  [通俗易懂]float32、float16、bfloat16之间的差异 [通俗易懂]float32、float16、bfloat16之间的差异目录一、 首先声明qlora一般用bfloat16的精度类型进行训练，然而支持bfloat16精度往往需要V100以上的卡（不包括V100）。可惜本人服务器上只有V100类型的卡，想要使用qlora进行训练需要把精度改为float16。（关于不同精">
+    <meta name="description" content="a61022706 的博文 原创：  python爬取百度百科属性框 原创：  Mysql登录常见报错 原创：  【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载] 原创：  [教程] typora + gitee + Picgo搭建图床 原创：  Anaconda下的pytorch环境配置及pycharm导入（win10+CPU) 原创：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yajing luo&#39;s blog">
-<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20[%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82]float32%E3%80%81float16%E3%80%81bfloat16%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE%E5%BC%82/index.html">
-<meta property="og:site_name" content="yajing luo&#39;s blog">
-<meta property="og:description" content="原创：  [通俗易懂]float32、float16、bfloat16之间的差异 [通俗易懂]float32、float16、bfloat16之间的差异目录一、 首先声明qlora一般用bfloat16的精度类型进行训练，然而支持bfloat16精度往往需要V100以上的卡（不包括V100）。可惜本人服务器上只有V100类型的卡，想要使用qlora进行训练需要把精度改为float16。（关于不同精">
+<meta property="og:title" content="Abigail&#39;s blog">
+<meta property="og:url" content="https://abigail61.github.io/2024/11/23/README/index.html">
+<meta property="og:site_name" content="Abigail&#39;s blog">
+<meta property="og:description" content="a61022706 的博文 原创：  python爬取百度百科属性框 原创：  Mysql登录常见报错 原创：  【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载] 原创：  [教程] typora + gitee + Picgo搭建图床 原创：  Anaconda下的pytorch环境配置及pycharm导入（win10+CPU) 原创：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/53173b7645f029cf933bf96f859dae02.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/c5db86d18351315215cd714d3dd95105.png">
-<meta property="article:published_time" content="2024-11-23T08:44:26.529Z">
-<meta property="article:modified_time" content="2024-11-23T07:12:22.779Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:published_time" content="2024-11-23T13:37:38.451Z">
+<meta property="article:modified_time" content="2024-11-23T13:36:18.392Z">
+<meta property="article:author" content="Yajing Luo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/blog_migrate/53173b7645f029cf933bf96f859dae02.png">
   
   
   
-  <title>yajing luo&#39;s blog</title>
+  <title>Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -78,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"abigail61.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"python"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -104,7 +101,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fany Full&#39;s Blog</strong>
+      <strong>Abigail&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -200,7 +197,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -217,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-23 16:44" pubdate>
-          2024年11月23日 下午
+        <time datetime="2024-11-23 21:37" pubdate>
+          2024年11月23日 晚上
         </time>
       </span>
     
@@ -230,7 +227,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          522 字
+          763 字
         
       </span>
     
@@ -242,7 +239,7 @@
         
         
           <!-- compatible with older versions-->
-          5 分钟
+          7 分钟
         
       </span>
     
@@ -284,20 +281,44 @@
             
               <div class="markdown-body">
                 
-                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  [通俗易懂]float32、float16、bfloat16之间的差异</p>
-<h1 id="通俗易懂-float32、float16、bfloat16之间的差异"><a href="#通俗易懂-float32、float16、bfloat16之间的差异" class="headerlink" title="[通俗易懂]float32、float16、bfloat16之间的差异"></a>[通俗易懂]float32、float16、bfloat16之间的差异</h1><h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><h2 id="一、-首先声明"><a href="#一、-首先声明" class="headerlink" title="一、 首先声明"></a>一、 首先声明</h2><p>qlora一般用bfloat16的精度类型进行训练，然而支持bfloat16精度往往需要V100以上的卡（不包括V100）。可惜本人服务器上只有V100类型的卡，想要使用qlora进行训练需要把精度改为float16。（关于不同精度类型的区别在下面会介绍）<br/> 使用float16进行训练时可能会出现数值溢出，训练loss不稳定等。使用V100的话利用int8类型进行lora训练可能更方便。</p>
-<h2 id="二、-float32、float16、bfloat16之间的差异"><a href="#二、-float32、float16、bfloat16之间的差异" class="headerlink" title="二、 float32、float16、bfloat16之间的差异"></a>二、 float32、float16、bfloat16之间的差异</h2><p>不同的浮点数据类型：float32、float16、bfloat16等，可以称之为精度，而模型大小 &#x3D; 模型参数量x精度。以下是不同精度之间的区别：</p>
-<ol>
-<li><strong>Float32</strong> ：又称FP32(float point 32)，是具有32位的浮点数，其中有1个符号位，8位表示指数，23位表示尾数。是标准的数据类型。1. <strong>Float16</strong>：又称FP16，其位数只有FP32的一半，指数保留5位，尾数保留10位。FP16所能表示的最大的数字是64k，存在上溢和下溢的风险。1. <strong>Bfloat16</strong>：又称BF16，其指数位数与FP32相同，都是8位，因此表示的数据范围更广，但是精度比FP16要差。<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/53173b7645f029cf933bf96f859dae02.png" srcset="/img/loading.gif" lazyload/><br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/c5db86d18351315215cd714d3dd95105.png" srcset="/img/loading.gif" lazyload/><br/> 因为1字节（Byte）&#x3D;8比特（bit），因此32位&#x3D;4字节。<br/> FP32称为全精度（4字节），FP16和BF16可以称为半精度（2字节）。<br/> 如果是一个7B的模型，使用全精度的FP32版本，大小就为7X4 &#x3D; 28GB<br/> 使用半精度（FP16&#x2F;BF16），大小就为14GB。<br><strong>混合精度训练</strong>指的是使用FP32作为主权重，而在进行前向和后向传播时使用FP16&#x2F;BF16来提升训练速度，最后在梯度更新阶段再使用FP16&#x2F;BF16梯度更新FP32主权重。</li>
+                <h1 id="a61022706-的博文"><a href="#a61022706-的博文" class="headerlink" title="a61022706 的博文"></a>a61022706 的博文</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/115076086">原创<br>：  python爬取百度百科属性框</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/115396870">原创<br>：  Mysql登录常见报错</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/115982283">原创<br>：  【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/121047350">原创<br>：  [教程] typora + gitee + Picgo搭建图床</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/121079637">原创<br>：  Anaconda下的pytorch环境配置及pycharm导入（win10+CPU)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/121439885">原创<br>：  在服务器上下载anaconda，配置pytorch的过程 [CUDA11.4]，以及使用pychram连接服务器</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/122228080">原创<br>：  在服务器上git clone github项目的过程</a></li>
+<li>[原创<br>：  **Linux安装包下载磁盘空间不足<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/123489507">ERROR: Could not install packages due to an OSError: [Errno 28] No space left on</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/130051255">原创<br>：  【疑难杂症】overleaf公式显示异常并且被重复添加至正文内，正文内$符号消失，编译报错Missing $ inserted.inserted text。</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/130256742">原创<br>：  Perplexity：深入理解语言模型评价指标——困惑度</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/130373757">原创<br>：  【已解决】conda install报错 An HTTP error occurred when trying to retrieve this URL. 更换清华源也无效</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/131297757">原创<br>：  【疑难杂症】pandas将dataframe导出为csv文件，用excel打开出现乱码字符&#x2F;有多余列&#x2F;行数不对</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/131799575">原创<br>：  【nvidia-smi：command not found】如何在集群服务器上使用nvidia-smi查看GPU信息</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/134887159">原创<br>：  【已解决】如何在服务器中下载huggingface模型，解决huggingface无法连接</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/134903686">原创<br>：  【超简易安装】在linux集群服务器上使用conda安装高版本cuda(cuda-11.8)和pytorch2.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/134903717">原创<br>：  【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/135235127">原创<br>：  【常用bsub指令介绍】使用bsub命令提交作业、开启交互式窗口，在集群服务器上用pdb进行代码调试</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/135190055">原创<br>：  [通俗易懂]float32、float16、bfloat16之间的差异</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/135376634">原创<br>：  如何把服务器代码上传至github</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/135492923">原创<br>：  【linux】执行bash文件后如何记录终端打印出来的输出和错误信息</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/136400861">原创<br>：  【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/136795101">原创<br>：  pycharm里test connection连接成功，但是无法同步服务器文件，deployment变灰</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/136923359">原创<br>：  移动硬盘分区打不开，显示函数不正确</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/137000185">原创<br>：  服务器上虚拟环境里的jupyter notebook连接不上kernal，显示not connection to kernel</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/137207579">原创<br>：  InternLM2论文笔记</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/137640705">原创<br>：  mobaXterm使用密钥免密登录服务器，并且在Vscode中使用ppk密钥进行远程连接</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/137926094">原创<br>：  【报错解决】使用openai的api时出现APIConnectionError: Connection error.错误</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/138763825">原创<br>：  如何在huggingface上申请下载使用llama2&#x2F;3模型</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/139457488">原创<br>：  【plt保存图片的坑】python中为什么使用plt.savefig()保存图片为空白</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/139629995">原创<br>：  vllm报错out of memory解决</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/140101314">原创<br>：  【wandb】在同一服务器上多用户登录</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/140301967">原创<br>：  wandb: - 0.099 MB of 0.129 MB uploaded (0.030 MB deduped) wandb一直uploaded终极解决方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/140665772">原创<br>：  如何在vscode中对在服务器上多卡运行的bash脚本进行debug?</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/141640451">原创<br>：  【文本去重】通俗易懂理解Minhash算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/141570792">原创<br>：  [已解决] flash-attn报错flash_attn_2_cuda.cpython-310-x86_64-linux-gnu.so: undefined symbol</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/143690449">原创<br>：  温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？</a></li>
 </ol>
-<p>参考</p>
-<blockquote>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://huggingface.co/blog/zh/hf-bitsandbytes-integration">https://huggingface.co/blog/zh/hf-bitsandbytes-integration</a></p>
-<p>内容来源：csdn.net</p>
-<p>作者昵称：凌漪_</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/135190055">https://blog.csdn.net/a61022706/article/details/135190055</a></p>
-<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
 
                 
               </div>
@@ -316,13 +337,13 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div></div>
-      <div>http://example.com/2024/11/23/原创--  [通俗易懂]float32、float16、bfloat16之间的差异/</div>
+      <div>https://abigail61.github.io/2024/11/23/README/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Yajing Luo</div>
         </div>
       
       
@@ -360,18 +381,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%5B%E5%B7%B2%E8%A7%A3%E5%86%B3%5D%20flash-attn%E6%8A%A5%E9%94%99flash_attn_2_cuda.cpython-310-x86_64-linux-gnu.so-%20undefined%20symbol/" title="">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%5B%E6%95%99%E7%A8%8B%5D%20typora%20+%20gitee%20+%20Picgo%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8Agit%20clone%20github%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%BF%87%E7%A8%8B/" title="在服务器上git clone github项目的过程">
+                        <span class="hidden-mobile">在服务器上git clone github项目的过程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

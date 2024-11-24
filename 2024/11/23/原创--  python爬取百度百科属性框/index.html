@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -16,29 +16,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原创：  python爬取百度百科属性框 python爬取百度百科属性框python爬取百度百科属性框记录由于构建知识图谱时需要爬取一些实体属性，故考虑爬取百度百科的属性框，如图：  实体名称为马寅初，想根据以上的信息框爬取一些三元组关系，并保存到csv文件中，格式如下： |实体|关系|属性|——|马寅初|中文名|马寅初|马寅初|外文名|马寅初|马寅初|国籍|中国|马寅初|出生日期|… 一个两个实">
+    <meta name="description" content="python爬取百度百科属性框记录由于构建知识图谱时需要爬取一些实体属性，故考虑爬取百度百科的属性框，如图：  实体名称为马寅初，想根据以上的信息框爬取一些三元组关系，并保存到csv文件中，格式如下： |实体|关系|属性|——|马寅初|中文名|马寅初|马寅初|外文名|马寅初|马寅初|国籍|中国|马寅初|出生日期|… 一个两个实体可以考虑在网页上直接复制粘贴，但有很多个该怎么办呢？故考虑选用pyth">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yajing luo&#39;s blog">
-<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20python%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E7%99%BE%E7%A7%91%E5%B1%9E%E6%80%A7%E6%A1%86/index.html">
-<meta property="og:site_name" content="yajing luo&#39;s blog">
-<meta property="og:description" content="原创：  python爬取百度百科属性框 python爬取百度百科属性框python爬取百度百科属性框记录由于构建知识图谱时需要爬取一些实体属性，故考虑爬取百度百科的属性框，如图：  实体名称为马寅初，想根据以上的信息框爬取一些三元组关系，并保存到csv文件中，格式如下： |实体|关系|属性|——|马寅初|中文名|马寅初|马寅初|外文名|马寅初|马寅初|国籍|中国|马寅初|出生日期|… 一个两个实">
+<meta property="og:title" content="python爬取百度百科属性框">
+<meta property="og:url" content="https://abigail61.github.io/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20python%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E7%99%BE%E7%A7%91%E5%B1%9E%E6%80%A7%E6%A1%86/index.html">
+<meta property="og:site_name" content="Abigail&#39;s blog">
+<meta property="og:description" content="python爬取百度百科属性框记录由于构建知识图谱时需要爬取一些实体属性，故考虑爬取百度百科的属性框，如图：  实体名称为马寅初，想根据以上的信息框爬取一些三元组关系，并保存到csv文件中，格式如下： |实体|关系|属性|——|马寅初|中文名|马寅初|马寅初|外文名|马寅初|马寅初|国籍|中国|马寅初|出生日期|… 一个两个实体可以考虑在网页上直接复制粘贴，但有很多个该怎么办呢？故考虑选用pyth">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/18e04f921da86d2f4a843b8f3072679c.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/e9fea62edd80cbc8819600f5577e6ee6.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/4454afa991b4c9e21dca37828b64d9a2.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/a5d6df4ce614ec8daa1c47ee6ef7826a.png">
 <meta property="article:published_time" content="2024-11-23T08:44:26.573Z">
-<meta property="article:modified_time" content="2024-11-23T07:12:33.955Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2024-11-23T13:36:40.743Z">
+<meta property="article:author" content="Yajing Luo">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://i-blog.csdnimg.cn/blog_migrate/18e04f921da86d2f4a843b8f3072679c.png">
   
   
   
-  <title>yajing luo&#39;s blog</title>
+  <title>python爬取百度百科属性框 - Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"abigail61.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"python"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -106,7 +106,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fany Full&#39;s Blog</strong>
+      <strong>Abigail&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -202,13 +202,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="python爬取百度百科属性框"></span>
           
         </div>
 
@@ -232,7 +232,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1k 字
+          987 字
         
       </span>
     
@@ -281,13 +281,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">python爬取百度百科属性框</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  python爬取百度百科属性框</p>
-<h1 id="python爬取百度百科属性框"><a href="#python爬取百度百科属性框" class="headerlink" title="python爬取百度百科属性框"></a>python爬取百度百科属性框</h1><h2 id="python爬取百度百科属性框记录"><a href="#python爬取百度百科属性框记录" class="headerlink" title="python爬取百度百科属性框记录"></a>python爬取百度百科属性框记录</h2><p>由于构建知识图谱时需要爬取一些实体属性，故考虑爬取百度百科的属性框，如图：<br/> <img alt="马寅初" src="https://i-blog.csdnimg.cn/blog_migrate/18e04f921da86d2f4a843b8f3072679c.png" srcset="/img/loading.gif" lazyload/><br/> 实体名称为马寅初，想根据以上的信息框爬取一些三元组关系，并保存到csv文件中，格式如下：</p>
+                <h2 id="python爬取百度百科属性框记录"><a href="#python爬取百度百科属性框记录" class="headerlink" title="python爬取百度百科属性框记录"></a>python爬取百度百科属性框记录</h2><p>由于构建知识图谱时需要爬取一些实体属性，故考虑爬取百度百科的属性框，如图：<br/> <img alt="马寅初" src="https://i-blog.csdnimg.cn/blog_migrate/18e04f921da86d2f4a843b8f3072679c.png" srcset="/img/loading.gif" lazyload/><br/> 实体名称为马寅初，想根据以上的信息框爬取一些三元组关系，并保存到csv文件中，格式如下：</p>
 <p>|实体|关系|属性<br>|——<br>|马寅初|中文名|马寅初<br>|马寅初|外文名|马寅初<br>|马寅初|国籍|中国<br>|马寅初|出生日期|…</p>
 <p>一个两个实体可以考虑在网页上直接复制粘贴，但有很多个该怎么办呢？故考虑选用python爬虫来获取这些信息。</p>
 <h3 id="分析页面结构"><a href="#分析页面结构" class="headerlink" title="分析页面结构"></a>分析页面结构</h3><p>在百科页面上右键-检查，观察网页结构，发现属性框是存放在一个名叫 basic-info.com-clearfix的标签里的，并且里面还分了左右两列。<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/e9fea62edd80cbc8819600f5577e6ee6.png" srcset="/img/loading.gif" lazyload/><br/> 再进一步观察，发现属性名都存放在 basic-info-item name标签里，属性值都存放在basic-info-item value标签里。<br/> 由于属性名和属性值是一一对应的，故我们的策略就是获得两个列表，一个存放爬到的属性名，一个存放爬到的属性值，然后进行拼接。<br/> 由于爬虫的时候容易被禁，所以我们要构造一个headers，来模拟浏览器访问。我们浏览器中查找自己的user-agent。具体为在网页右键-检查-选择Network-选择Doc<br/> 拉到最下面，即可查看自己的user-agent具体的值啦。<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/4454afa991b4c9e21dca37828b64d9a2.png" srcset="/img/loading.gif" lazyload/></p>
@@ -308,10 +307,6 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs stylus">attrlist = <span class="hljs-selector-attr">[]</span><br>  infolist = <span class="hljs-selector-attr">[]</span><br>  titlelist = <span class="hljs-selector-attr">[]</span><br>  <span class="hljs-keyword">for</span> <span class="hljs-selector-tag">i</span> <span class="hljs-keyword">in</span> attr:<br>      t = <span class="hljs-selector-tag">i</span><span class="hljs-selector-class">.get_text</span>()<br>      t = <span class="hljs-string">&quot;&quot;</span><span class="hljs-selector-class">.join</span>(t<span class="hljs-selector-class">.split</span>()) #去除空白符<br>      attrlist<span class="hljs-selector-class">.append</span>(t)<br>      titlelist<span class="hljs-selector-class">.append</span>(title) #重复title<br>  <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> info:<br>      n = j<span class="hljs-selector-class">.get_text</span>()<br>      n = <span class="hljs-string">&quot;&quot;</span><span class="hljs-selector-class">.join</span>(n<span class="hljs-selector-class">.split</span>())<br>      infolist<span class="hljs-selector-class">.append</span>(n)<br>  #文件写入方式为在文件后继续写内容，而不覆盖原有内容，故选择<span class="hljs-string">&#x27;a&#x27;</span>这种打开方式。<br>  with <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;qita.csv&#x27;</span>,<span class="hljs-string">&#x27;a&#x27;</span>,newline=<span class="hljs-string">&#x27;&#x27;</span>)as f:<br>      writer = csv<span class="hljs-selector-class">.writer</span>(f)<br>      writer<span class="hljs-selector-class">.writerows</span>(<span class="hljs-built_in">zip</span>(titlelist,attrlist,infolist))<br><br></code></pre></td></tr></table></figure>
 
 <p>最后爬到的结果就是这个样子的啦。<br/> <strong>只是一个Excel示例</strong><br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/a5d6df4ce614ec8daa1c47ee6ef7826a.png" srcset="/img/loading.gif" lazyload/><br/> 初步实现了一个小爬虫，但是还有待优化的地方。<br/> 比如爬取的实体若没有相应百度百科链接，就会报错。应该设置一个判断，如果url获取失败就报错。<br/> 还有就是模块化还不够优美，代码功能是能实现，但是写的略丑了一点…</p>
-<p>内容来源：csdn.net</p>
-<p>作者昵称：凌漪_</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/115076086">https://blog.csdn.net/a61022706/article/details/115076086</a></p>
-<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
 
                 
               </div>
@@ -329,14 +324,14 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/11/23/原创--  python爬取百度百科属性框/</div>
+      <div>python爬取百度百科属性框</div>
+      <div>https://abigail61.github.io/2024/11/23/原创--  python爬取百度百科属性框/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Yajing Luo</div>
         </div>
       
       
@@ -374,9 +369,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20vllm%E6%8A%A5%E9%94%99out%20of%20memory%E8%A7%A3%E5%86%B3/" title="">
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20vllm%E6%8A%A5%E9%94%99out%20of%20memory%E8%A7%A3%E5%86%B3/" title="vllm报错out of memory解决">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">vllm报错out of memory解决</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -384,8 +379,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20pycharm%E9%87%8Ctest%20connection%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F%EF%BC%8C%E4%BD%86%E6%98%AF%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6%EF%BC%8Cdeployment%E5%8F%98%E7%81%B0/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20pycharm%E9%87%8Ctest%20connection%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F%EF%BC%8C%E4%BD%86%E6%98%AF%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6%EF%BC%8Cdeployment%E5%8F%98%E7%81%B0/" title="pycharm里test connection连接成功，但是无法同步服务器文件，deployment变灰">
+                        <span class="hidden-mobile">pycharm里test connection连接成功，但是无法同步服务器文件，deployment变灰</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

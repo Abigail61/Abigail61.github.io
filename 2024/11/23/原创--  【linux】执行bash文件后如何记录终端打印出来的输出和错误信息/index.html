@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -16,26 +16,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原创：  【linux】执行bash文件后如何记录终端打印出来的输出和错误信息 【linux】执行bash文件后如何记录终端打印出来的输出和错误信息背景在命令行中执行sh文件后，终端里会显示打印出来的信息，但需要一点点翻动来看很麻烦。以下命令帮助我们将标准输出和标准错误显示在终端上，并且保存到文件中。 命令命令如下，直接在命令行中输入即可： 12345LOG_STDOUT&#x3D;&quot;&#x2F;home&#x2F;">
+    <meta name="description" content="背景在命令行中执行sh文件后，终端里会显示打印出来的信息，但需要一点点翻动来看很麻烦。以下命令帮助我们将标准输出和标准错误显示在终端上，并且保存到文件中。 命令命令如下，直接在命令行中输入即可： 12345LOG_STDOUT&#x3D;&quot;&#x2F;home&#x2F;xxx&#x2F;log&#x2F;$(date &#x27;+%Y%m%d_%H%M%S&#x27;)_out.log&quot;LOG_STDERR&#x3D;&quot;&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yajing luo&#39;s blog">
-<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90linux%E3%80%91%E6%89%A7%E8%A1%8Cbash%E6%96%87%E4%BB%B6%E5%90%8E%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E7%BB%88%E7%AB%AF%E6%89%93%E5%8D%B0%E5%87%BA%E6%9D%A5%E7%9A%84%E8%BE%93%E5%87%BA%E5%92%8C%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF/index.html">
-<meta property="og:site_name" content="yajing luo&#39;s blog">
-<meta property="og:description" content="原创：  【linux】执行bash文件后如何记录终端打印出来的输出和错误信息 【linux】执行bash文件后如何记录终端打印出来的输出和错误信息背景在命令行中执行sh文件后，终端里会显示打印出来的信息，但需要一点点翻动来看很麻烦。以下命令帮助我们将标准输出和标准错误显示在终端上，并且保存到文件中。 命令命令如下，直接在命令行中输入即可： 12345LOG_STDOUT&#x3D;&quot;&#x2F;home&#x2F;">
+<meta property="og:title" content="【linux】执行bash文件后如何记录终端打印出来的输出和错误信息">
+<meta property="og:url" content="https://abigail61.github.io/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90linux%E3%80%91%E6%89%A7%E8%A1%8Cbash%E6%96%87%E4%BB%B6%E5%90%8E%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E7%BB%88%E7%AB%AF%E6%89%93%E5%8D%B0%E5%87%BA%E6%9D%A5%E7%9A%84%E8%BE%93%E5%87%BA%E5%92%8C%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="Abigail&#39;s blog">
+<meta property="og:description" content="背景在命令行中执行sh文件后，终端里会显示打印出来的信息，但需要一点点翻动来看很麻烦。以下命令帮助我们将标准输出和标准错误显示在终端上，并且保存到文件中。 命令命令如下，直接在命令行中输入即可： 12345LOG_STDOUT&#x3D;&quot;&#x2F;home&#x2F;xxx&#x2F;log&#x2F;$(date &#x27;+%Y%m%d_%H%M%S&#x27;)_out.log&quot;LOG_STDERR&#x3D;&quot;&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/4ad7ea105998a5615ade45b7177b8072.png">
 <meta property="article:published_time" content="2024-11-23T08:44:26.535Z">
-<meta property="article:modified_time" content="2024-11-23T07:12:21.477Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2024-11-23T13:36:28.445Z">
+<meta property="article:author" content="Yajing Luo">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://i-blog.csdnimg.cn/blog_migrate/4ad7ea105998a5615ade45b7177b8072.png">
   
   
   
-  <title>yajing luo&#39;s blog</title>
+  <title>【linux】执行bash文件后如何记录终端打印出来的输出和错误信息 - Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -77,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"abigail61.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"python"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -103,7 +103,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fany Full&#39;s Blog</strong>
+      <strong>Abigail&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -199,13 +199,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="【linux】执行bash文件后如何记录终端打印出来的输出和错误信息"></span>
           
         </div>
 
@@ -229,7 +229,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          408 字
+          323 字
         
       </span>
     
@@ -241,7 +241,7 @@
         
         
           <!-- compatible with older versions-->
-          4 分钟
+          3 分钟
         
       </span>
     
@@ -278,13 +278,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">【linux】执行bash文件后如何记录终端打印出来的输出和错误信息</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  【linux】执行bash文件后如何记录终端打印出来的输出和错误信息</p>
-<h1 id="【linux】执行bash文件后如何记录终端打印出来的输出和错误信息"><a href="#【linux】执行bash文件后如何记录终端打印出来的输出和错误信息" class="headerlink" title="【linux】执行bash文件后如何记录终端打印出来的输出和错误信息"></a>【linux】执行bash文件后如何记录终端打印出来的输出和错误信息</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在命令行中执行sh文件后，终端里会显示打印出来的信息，但需要一点点翻动来看很麻烦。以下命令帮助我们将标准输出和标准错误显示在终端上，并且保存到文件中。</p>
+                <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在命令行中执行sh文件后，终端里会显示打印出来的信息，但需要一点点翻动来看很麻烦。以下命令帮助我们将标准输出和标准错误显示在终端上，并且保存到文件中。</p>
 <h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>命令如下，直接在命令行中输入即可：</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs perl">LOG_STDOUT=<span class="hljs-string">&quot;/home/xxx/log/<span class="hljs-variable">$(</span>date &#x27;+%Y%m<span class="hljs-variable">%d</span>_%H%M<span class="hljs-variable">%S</span>&#x27;)_out.log&quot;</span><br>LOG_STDERR=<span class="hljs-string">&quot;/home/xxx/log/<span class="hljs-variable">$(</span>date &#x27;+%Y%m<span class="hljs-variable">%d</span>_%H%M<span class="hljs-variable">%S</span>&#x27;)_err.log&quot;</span><br><br>bash -<span class="hljs-keyword">x</span> xxx.sh &amp;<span class="hljs-keyword">gt</span>; &amp;<span class="hljs-keyword">gt</span>;(tee <span class="hljs-string">&quot;<span class="hljs-variable">$LOG_STDOUT</span>&quot;</span>) <span class="hljs-number">2</span>&amp;<span class="hljs-keyword">gt</span>; &amp;<span class="hljs-keyword">gt</span>;(tee <span class="hljs-string">&quot;<span class="hljs-variable">$LOG_STDERR</span>&quot;</span> &amp;<span class="hljs-keyword">gt</span>;&amp;amp;<span class="hljs-number">2</span>)<br><br></code></pre></td></tr></table></figure>
 
@@ -292,10 +291,6 @@
 <li>LOG_STDOUT 为输出日志所在的目录1. LOG_STDERR 为错误日志所在的目录1. bash xxx.sh是执行任务脚本，加入-x参数是可以把sh里面的信息也打印出来（否则可能会忘记该任务用了哪些参数）1. 最后使用tee命令，可以使得输出和错误信息都保存到文件，同时也保持在终端中显示。</li>
 </ol>
 <h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>执行以上命令后我们会在相应目录下得到两个日志文件：<br/> <img alt="在这里插入图片描述" src="https://i-blog.csdnimg.cn/blog_migrate/4ad7ea105998a5615ade45b7177b8072.png" srcset="/img/loading.gif" lazyload/><br/> 其中out文件记录了stdout内容，err文件记录了所执行的sh脚本的内容，以及stderr的内容。同时在终端也能同步打印输出信息。</p>
-<p>内容来源：csdn.net</p>
-<p>作者昵称：凌漪_</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/135492923">https://blog.csdn.net/a61022706/article/details/135492923</a></p>
-<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
 
                 
               </div>
@@ -313,14 +308,14 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/11/23/原创--  【linux】执行bash文件后如何记录终端打印出来的输出和错误信息/</div>
+      <div>【linux】执行bash文件后如何记录终端打印出来的输出和错误信息</div>
+      <div>https://abigail61.github.io/2024/11/23/原创--  【linux】执行bash文件后如何记录终端打印出来的输出和错误信息/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Yajing Luo</div>
         </div>
       
       
@@ -358,9 +353,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90nvidia-smi-command%20not%20found%E3%80%91%E5%A6%82%E4%BD%95%E5%9C%A8%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8nvidia-smi%E6%9F%A5%E7%9C%8BGPU%E4%BF%A1%E6%81%AF/" title="">
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90nvidia-smi-command%20not%20found%E3%80%91%E5%A6%82%E4%BD%95%E5%9C%A8%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8nvidia-smi%E6%9F%A5%E7%9C%8BGPU%E4%BF%A1%E6%81%AF/" title="【nvidia-smi：command not found】如何在集群服务器上使用nvidia-smi查看GPU信息">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">【nvidia-smi：command not found】如何在集群服务器上使用nvidia-smi查看GPU信息</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -368,8 +363,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90baichuan2%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E7%BB%8F%E9%AA%8C%E3%80%91%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8baichuan2-7b-chat%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD+%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE+%E6%8A%A5%E9%94%99%E5%88%86%E6%9E%90%EF%BC%89/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90baichuan2%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E7%BB%8F%E9%AA%8C%E3%80%91%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%9C%A8linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8baichuan2-7b-chat%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD+%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE+%E6%8A%A5%E9%94%99%E5%88%86%E6%9E%90%EF%BC%89/" title="【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）">
+                        <span class="hidden-mobile">【baichuan2模型部署经验】手把手教你在linux服务器上安装和使用baichuan2-7b-chat模型（模型下载+环境配置+报错分析）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

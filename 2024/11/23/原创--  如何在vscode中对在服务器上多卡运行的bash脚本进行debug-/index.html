@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -16,26 +16,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原创：  如何在vscode中对在服务器上多卡运行的bash脚本进行debug? 如何在vscode中对在服务器上多卡运行的bash脚本进行debug?问题描述使用vscode可以很方便地添加断点，进行代码调试。 在使用服务器时，我们的python代码通常是通过bash脚本来执行的，那么如何进行debug呢？ 待运行的bash 脚本示例前半段定义了一些参数，后半段是执行python代码 12345">
+    <meta name="description" content="? 问题描述使用vscode可以很方便地添加断点，进行代码调试。 在使用服务器时，我们的python代码通常是通过bash脚本来执行的，那么如何进行debug呢？ 待运行的bash 脚本示例前半段定义了一些参数，后半段是执行python代码 123456789101112export CUDA_VISIBLE_DEVICES&#x3D;1,2model_path&#x3D;&#x2F;models&#x2F;Mistral-7B-Ins">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yajing luo&#39;s blog">
-<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8vscode%E4%B8%AD%E5%AF%B9%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%A4%9A%E5%8D%A1%E8%BF%90%E8%A1%8C%E7%9A%84bash%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8Cdebug-/index.html">
-<meta property="og:site_name" content="yajing luo&#39;s blog">
-<meta property="og:description" content="原创：  如何在vscode中对在服务器上多卡运行的bash脚本进行debug? 如何在vscode中对在服务器上多卡运行的bash脚本进行debug?问题描述使用vscode可以很方便地添加断点，进行代码调试。 在使用服务器时，我们的python代码通常是通过bash脚本来执行的，那么如何进行debug呢？ 待运行的bash 脚本示例前半段定义了一些参数，后半段是执行python代码 12345">
+<meta property="og:title" content="如何在vscode中对在服务器上多卡运行的bash脚本进行debug?">
+<meta property="og:url" content="https://abigail61.github.io/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8vscode%E4%B8%AD%E5%AF%B9%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%A4%9A%E5%8D%A1%E8%BF%90%E8%A1%8C%E7%9A%84bash%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8Cdebug-/index.html">
+<meta property="og:site_name" content="Abigail&#39;s blog">
+<meta property="og:description" content="? 问题描述使用vscode可以很方便地添加断点，进行代码调试。 在使用服务器时，我们的python代码通常是通过bash脚本来执行的，那么如何进行debug呢？ 待运行的bash 脚本示例前半段定义了一些参数，后半段是执行python代码 123456789101112export CUDA_VISIBLE_DEVICES&#x3D;1,2model_path&#x3D;&#x2F;models&#x2F;Mistral-7B-Ins">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9dd8dd79c0fe4ff3b5c901b0b16c5527.png">
 <meta property="article:published_time" content="2024-11-23T08:44:26.585Z">
-<meta property="article:modified_time" content="2024-11-23T07:12:13.900Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2024-11-23T13:36:20.745Z">
+<meta property="article:author" content="Yajing Luo">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/9dd8dd79c0fe4ff3b5c901b0b16c5527.png">
   
   
   
-  <title>yajing luo&#39;s blog</title>
+  <title>如何在vscode中对在服务器上多卡运行的bash脚本进行debug? - Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -77,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"abigail61.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"python"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -103,7 +103,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fany Full&#39;s Blog</strong>
+      <strong>Abigail&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -199,13 +199,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="如何在vscode中对在服务器上多卡运行的bash脚本进行debug?"></span>
           
         </div>
 
@@ -229,7 +229,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          518 字
+          442 字
         
       </span>
     
@@ -241,7 +241,7 @@
         
         
           <!-- compatible with older versions-->
-          5 分钟
+          4 分钟
         
       </span>
     
@@ -278,13 +278,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">如何在vscode中对在服务器上多卡运行的bash脚本进行debug?</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  如何在vscode中对在服务器上多卡运行的bash脚本进行debug?</p>
-<h1 id="如何在vscode中对在服务器上多卡运行的bash脚本进行debug"><a href="#如何在vscode中对在服务器上多卡运行的bash脚本进行debug" class="headerlink" title="如何在vscode中对在服务器上多卡运行的bash脚本进行debug?"></a>如何在vscode中对在服务器上多卡运行的bash脚本进行debug?</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用vscode可以很方便地添加断点，进行代码调试。<br/> 在使用服务器时，我们的python代码通常是通过bash脚本来执行的，那么如何进行debug呢？</p>
+                <p>?</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用vscode可以很方便地添加断点，进行代码调试。<br/> 在使用服务器时，我们的python代码通常是通过bash脚本来执行的，那么如何进行debug呢？</p>
 <h2 id="待运行的bash-脚本示例"><a href="#待运行的bash-脚本示例" class="headerlink" title="待运行的bash 脚本示例"></a>待运行的bash 脚本示例</h2><p>前半段定义了一些参数，后半段是执行python代码</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">CUDA_VISIBLE_DEVICES</span>=1,2<br><span class="hljs-attribute">model_path</span>=/models/Mistral-7B-Instruct-v0.2/<br><span class="hljs-attribute">output_path</span>=/project/datagen/evaluation/mmlu<br><span class="hljs-attribute">data_path</span>=/mmlu_data<br><br>python -m eval_mmlu.py \<br>    --model <span class="hljs-variable">$&#123;model_path&#125;</span> \<br>    --data_dir <span class="hljs-variable">$&#123;data_path&#125;</span> \<br>    --save_dir <span class="hljs-variable">$&#123;output_path&#125;</span> \<br>    --ntrain 5 \<br>    --subject elementary_mathematics \<br><br></code></pre></td></tr></table></figure>
 
@@ -303,10 +303,6 @@
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">CUDA_VISIBLE_DEVICES</span>=1,2<br><span class="hljs-attribute">model_path</span>=/models/Mistral-7B-Instruct-v0.2/<br><span class="hljs-attribute">output_path</span>=/project/datagen/evaluation/mmlu<br><span class="hljs-attribute">data_path</span>=/mmlu_data<br><br>python -m debugpy --listen localhost:8890 --wait-for-client \<br>    eval_mmlu.py \<br>    --model <span class="hljs-variable">$&#123;model_path&#125;</span> \<br>    --data_dir <span class="hljs-variable">$&#123;data_path&#125;</span> \<br>    --save_dir <span class="hljs-variable">$&#123;output_path&#125;</span> \<br>    --ntrain 5 \<br>    --subject elementary_mathematics \<br><br></code></pre></td></tr></table></figure>
 
 <p>通过使用debugpy并在8890端口上监听，这个脚本允许VS Code连接并进行远程调试，这与之前提到的launch.json配置相匹配。</p>
-<p>内容来源：csdn.net</p>
-<p>作者昵称：凌漪_</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/140665772">https://blog.csdn.net/a61022706/article/details/140665772</a></p>
-<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
 
                 
               </div>
@@ -324,14 +320,14 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/11/23/原创--  如何在vscode中对在服务器上多卡运行的bash脚本进行debug-/</div>
+      <div>如何在vscode中对在服务器上多卡运行的bash脚本进行debug?</div>
+      <div>https://abigail61.github.io/2024/11/23/原创--  如何在vscode中对在服务器上多卡运行的bash脚本进行debug-/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Yajing Luo</div>
         </div>
       
       
@@ -369,9 +365,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E6%B8%A9%E5%BA%A6%E8%99%BD%E5%AF%92%EF%BC%8C%E5%85%B6%E9%81%93%E7%8A%B9%E5%8F%98-OpenAI%E6%8E%A5%E5%8F%A3%E4%B9%8B%E6%B8%A9%E5%BA%A6%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%BA0%EF%BC%8C%E4%B8%BA%E4%BD%95%E6%AF%8F%E6%AC%A1%E5%9B%9E%E5%A4%8D%E4%BB%8D%E6%9C%89%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%EF%BC%9F/" title="">
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E6%B8%A9%E5%BA%A6%E8%99%BD%E5%AF%92%EF%BC%8C%E5%85%B6%E9%81%93%E7%8A%B9%E5%8F%98-OpenAI%E6%8E%A5%E5%8F%A3%E4%B9%8B%E6%B8%A9%E5%BA%A6%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%BA0%EF%BC%8C%E4%B8%BA%E4%BD%95%E6%AF%8F%E6%AC%A1%E5%9B%9E%E5%A4%8D%E4%BB%8D%E6%9C%89%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%EF%BC%9F/" title="温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -379,8 +375,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8huggingface%E4%B8%8A%E7%94%B3%E8%AF%B7%E4%B8%8B%E8%BD%BD%E4%BD%BF%E7%94%A8llama2-3%E6%A8%A1%E5%9E%8B/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8huggingface%E4%B8%8A%E7%94%B3%E8%AF%B7%E4%B8%8B%E8%BD%BD%E4%BD%BF%E7%94%A8llama2-3%E6%A8%A1%E5%9E%8B/" title="如何在huggingface上申请下载使用llama2/3模型">
+                        <span class="hidden-mobile">如何在huggingface上申请下载使用llama2/3模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

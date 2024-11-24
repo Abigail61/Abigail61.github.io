@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -16,29 +16,24 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原创：  [教程] typora + gitee + Picgo搭建图床 [教程] typora + gitee + Picgo搭建图床[最新教程] typora + gitee + Picgo搭建图床​ 在用typora写md文件的时候，图片地址是在本地的，如果将md上传到其他平台（如CSDN），图片就会加载不出来。解决方案为利用Picgo将在我们编写md的过程中的图片自动快速上传至Gitee,">
+    <meta name="description" content="1. 问题描述conda activate启动虚拟环境后，在命令行输入which python，显示的python编译器并不是虚拟环境目录里的python编译器，如下所示 123(vllm-env) xxx@ubuntu46:~&#x2F;project&#x2F;eval_model$ which python&#x2F;home&#x2F;xxx&#x2F;anaconda3&#x2F;envs&#x2F;open-instruct-env&#x2F;bin&#x2F;python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yajing luo&#39;s blog">
-<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20[%E6%95%99%E7%A8%8B]%20typora%20+%20gitee%20+%20Picgo%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/index.html">
-<meta property="og:site_name" content="yajing luo&#39;s blog">
-<meta property="og:description" content="原创：  [教程] typora + gitee + Picgo搭建图床 [教程] typora + gitee + Picgo搭建图床[最新教程] typora + gitee + Picgo搭建图床​ 在用typora写md文件的时候，图片地址是在本地的，如果将md上传到其他平台（如CSDN），图片就会加载不出来。解决方案为利用Picgo将在我们编写md的过程中的图片自动快速上传至Gitee,">
+<meta property="og:title" content="【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题">
+<meta property="og:url" content="https://abigail61.github.io/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87%E3%80%91conda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E9%87%8C%E4%BD%BF%E7%94%A8which%20python%20%E4%B8%8E%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%90%8D%E7%A7%B0%E5%AF%B9%E5%BA%94%E4%B8%8D%E4%B8%8A%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Abigail&#39;s blog">
+<meta property="og:description" content="1. 问题描述conda activate启动虚拟环境后，在命令行输入which python，显示的python编译器并不是虚拟环境目录里的python编译器，如下所示 123(vllm-env) xxx@ubuntu46:~&#x2F;project&#x2F;eval_model$ which python&#x2F;home&#x2F;xxx&#x2F;anaconda3&#x2F;envs&#x2F;open-instruct-env&#x2F;bin&#x2F;python">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/3d7349fa32717dd44963226f84066168.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/e9325eda818332c2865390607daebb1a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/5343a8b74da6c31e1f41453c01c95c0d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/314c489bafae1d8497ed948dcf6b67b7.png">
-<meta property="article:published_time" content="2024-11-23T08:44:26.527Z">
-<meta property="article:modified_time" content="2024-11-23T07:12:31.435Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:published_time" content="2024-11-23T08:44:26.550Z">
+<meta property="article:modified_time" content="2024-11-23T13:36:27.912Z">
+<meta property="article:author" content="Yajing Luo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/blog_migrate/3d7349fa32717dd44963226f84066168.png">
   
   
   
-  <title>yajing luo&#39;s blog</title>
+  <title>【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题 - Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -80,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"abigail61.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"python"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -106,7 +101,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fany Full&#39;s Blog</strong>
+      <strong>Abigail&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -202,13 +197,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题"></span>
           
         </div>
 
@@ -232,7 +227,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          875 字
+          298 字
         
       </span>
     
@@ -244,7 +239,7 @@
         
         
           <!-- compatible with older versions-->
-          8 分钟
+          3 分钟
         
       </span>
     
@@ -281,41 +276,21 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  [教程] typora + gitee + Picgo搭建图床</p>
-<h1 id="教程-typora-gitee-Picgo搭建图床"><a href="#教程-typora-gitee-Picgo搭建图床" class="headerlink" title="[教程] typora + gitee + Picgo搭建图床"></a>[教程] typora + gitee + Picgo搭建图床</h1><h4 id="最新教程-typora-gitee-Picgo搭建图床"><a href="#最新教程-typora-gitee-Picgo搭建图床" class="headerlink" title="[最新教程] typora + gitee + Picgo搭建图床"></a>[最新教程] typora + gitee + Picgo搭建图床</h4><p>​ 在用typora写md文件的时候，图片地址是在本地的，如果将md上传到其他平台（如CSDN），图片就会加载不出来。解决方案为利用<strong>Picgo</strong>将在我们编写md的过程中的图片自动快速上传至<strong>Gitee</strong>,并获取图片 URL 链接,这样图片就不是保存在本地，而是保存在图床上了。复制md至别的平台时，图片也能显示了。</p>
-<p>具体步骤为：</p>
-<ol>
-<li><h5>下载Picgo</h5> 点击链接[Picgo官方教程][https://picgo.github.io/PicGo-Doc/zh/guide/#特色功能]下载应用<img alt="image-20211030091554037" src="https://i-blog.csdnimg.cn/blog_migrate/3d7349fa32717dd44963226f84066168.png" srcset="/img/loading.gif" lazyload/> 选择exe文件下载并下载安装。 <img alt="image-20211030091713250" src="https://i-blog.csdnimg.cn/blog_migrate/e9325eda818332c2865390607daebb1a.png" srcset="/img/loading.gif" lazyload/> **注意** 安装完成Picgo之后，应用不会自动弹出，我们在电脑右下角中找到并点击，可以看到Picgo主界面。 <img alt="image-20211030093243938" src="https://i-blog.csdnimg.cn/blog_migrate/5343a8b74da6c31e1f41453c01c95c0d.png" srcset="/img/loading.gif" lazyload/> <img alt="image-20211030093215955" src="https://i-blog.csdnimg.cn/blog_migrate/314c489bafae1d8497ed948dcf6b67b7.png" srcset="/img/loading.gif" lazyload/> <li> <h5>在Picgo中下载gitee插件</h5> Picgo中默认支持github、腾讯云等图床，但没有Gitee。但为了国内快速访问我们选择Gitee。在插件一栏中搜索Gitee，并下载安装。  ​ 如果在安装插件过程中，报错需要Node.js的话，我们就去Node官网下载。
-<ol>1.  <h6>下载node [node.js官网地址](https://nodejs.org/zh-cn/) ,选择安装位置，一路安装就好了</h6></li>
-</ol>
-<h5 id="在Picgo中下载gitee插件"><a href="#在Picgo中下载gitee插件" class="headerlink" title="在Picgo中下载gitee插件"></a>在Picgo中下载gitee插件</h5><ol>
-<li><h6>配置环境路径。</h6> 
-将node所在文件夹（我的安装位置是D:\node\），添加到 此电脑-属性-高级系统设置-系统变量-path中。</li>
-<li><h6>查看是否安装成功</h6> 打开cmd命令行，进入node所在文件夹。输入npm -v查看node.js版本，如果有返回版本号就说明下载成功。</li>
-</ol>
-<h5 id="新建gitee仓库"><a href="#新建gitee仓库" class="headerlink" title="新建gitee仓库"></a>新建gitee仓库</h5><ol>
-<li><h6>进入Gitee,登录后点击右上角的+，新建仓库</h6> 1.  <h6>新建时注意画红圈的地方。**开源**、**初始化仓库**、**单分支模型**</h6> 1.  <h6>仓库地址中两个画波浪线的地方要注意，之后我们配置picgo时需要用到。</h6></li>
-</ol>
-<h6 id="新建时注意画红圈的地方。开源、初始化仓库、单分支模型"><a href="#新建时注意画红圈的地方。开源、初始化仓库、单分支模型" class="headerlink" title="新建时注意画红圈的地方。开源、初始化仓库、单分支模型"></a>新建时注意画红圈的地方。<strong>开源</strong>、<strong>初始化仓库</strong>、<strong>单分支模型</strong></h6><h5 id="生成gitee令牌"><a href="#生成gitee令牌" class="headerlink" title="生成gitee令牌"></a>生成gitee令牌</h5><p>摸着右上角的头像，点击设置。在左侧中找到私人令牌。</p>
-<p>生成新令牌，设置如下。复制好令牌，不要忘记哦~</p>
-<h5 id="配置Picgo"><a href="#配置Picgo" class="headerlink" title="配置Picgo"></a>配置Picgo</h5><p>这一步很容易因为配置错误而失败。网上的教程很多都过时了，这里贴出实测可用的配置说明。</p>
-<ol>
-<li><h5>配置typora</h5> 
-最后一步了，我们在typora中进行配置。点击文件-偏好设置。插入图片时选择无特殊操作，上传服务中选择picgo(app)，然后选择picgo文件路径。最后点击验证图片上传选项，看是否成功。</li>
-</ol>
-<p>插入图片时选择无特殊操作的原因是：图片上传至Gitee是实时的，但有时候我们写文档的过程中，会遇到一些想要撤销的图片。如果我们把它也上传到Gitee仓库的话，Gitee很快就会满了。所以编写文档的过程中，图片地址还是本地的。如存储在C盘。</p>
-<p>当文档编写完毕之后，点击格式-图像-上传所有本地图片，就可以把最终版本的图片全都上传了。</p>
-<p>我们可以看到图片的存储路径变成了gitee。</p>
-<p>完结~</p>
-<p>内容来源：csdn.net</p>
-<p>作者昵称：凌漪_</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/121047350">https://blog.csdn.net/a61022706/article/details/121047350</a></p>
-<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
+                <h3 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h3><p>conda activate启动虚拟环境后，在命令行输入which python，显示的python编译器并不是虚拟环境目录里的python编译器，如下所示</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elixir">(vllm-env) xxx<span class="hljs-variable">@ubuntu46</span><span class="hljs-symbol">:~/project/eval_model</span><span class="hljs-variable">$ </span>which python<br>/home/xxx/anaconda3/envs/open-instruct-env/bin/python<br><br></code></pre></td></tr></table></figure>
+
+<p>启动的是vllm-env虚拟环境，结果使用的编译器是open-instruct-env环境里的。<br/> 也有可能是base环境里的</p>
+<h3 id="2-问题分析"><a href="#2-问题分析" class="headerlink" title="2. 问题分析"></a>2. 问题分析</h3><p><strong>（治标不治本）</strong><br/> <strong>可能原因1</strong>：是因为之前在A环境里conda activate启动了B环境，导致使用的还是A环境里的编译器<br/> <strong>解决方式</strong>：使用conda deactivate 退出B环境，再退出A环境，再使用conda activate启动A环境即可</p>
+<hr>
+<p><strong>（治本）</strong><br/> <strong>可能原因2</strong>：PATH环境路径配置错误<br/> <strong>解决方式</strong>：检查.bashrc里的export PATH，看是否指向了其他环境里的python作为默认路径，比如我的就指定了</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-string">&quot;/home/xxx/anaconda3/envs/open-instruct-env/bin:<span class="hljs-variable">$PATH</span>&quot;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>，从而导致默认的编译器都是open-instruct-env环境里的。<br/> 把.bashrc里的这行删除，重新指定export PATH&#x3D;”&#x2F;home&#x2F;xxx&#x2F;anaconda3&#x2F;bin:$PATH”即可，这样就不会每次都默认使用其他环境里的编译器了。</p>
 
                 
               </div>
@@ -333,14 +308,14 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/11/23/原创--  [教程] typora + gitee + Picgo搭建图床/</div>
+      <div>【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题</div>
+      <div>https://abigail61.github.io/2024/11/23/原创--  【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Yajing Luo</div>
         </div>
       
       
@@ -378,15 +353,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%5B%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%5Dfloat32%E3%80%81float16%E3%80%81bfloat16%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE%E5%BC%82/" title="">
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87%E3%80%91overleaf%E5%85%AC%E5%BC%8F%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8%E5%B9%B6%E4%B8%94%E8%A2%AB%E9%87%8D%E5%A4%8D%E6%B7%BB%E5%8A%A0%E8%87%B3%E6%AD%A3%E6%96%87%E5%86%85%EF%BC%8C%E6%AD%A3%E6%96%87%E5%86%85$%E7%AC%A6%E5%8F%B7%E6%B6%88%E5%A4%B1%EF%BC%8C%E7%BC%96%E8%AF%91%E6%8A%A5%E9%94%99Missing%20$%20inserted.inserted%20text%E3%80%82/" title="【疑难杂症】overleaf公式显示异常并且被重复添加至正文内，正文内$符号消失，编译报错Missing $ inserted.inserted text。">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">【疑难杂症】overleaf公式显示异常并且被重复添加至正文内，正文内$符号消失，编译报错Missing $ inserted.inserted text。</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E6%96%87%E6%9C%AC%E5%8E%BB%E9%87%8D%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%90%86%E8%A7%A3Minhash%E7%AE%97%E6%B3%95/" title="【文本去重】通俗易懂理解Minhash算法">
+                        <span class="hidden-mobile">【文本去重】通俗易懂理解Minhash算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

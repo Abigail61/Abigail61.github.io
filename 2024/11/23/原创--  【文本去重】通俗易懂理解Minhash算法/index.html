@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -16,24 +16,24 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原创：  【文本去重】通俗易懂理解Minhash算法 【文本去重】通俗易懂理解Minhash算法Minhash算法直观理解作者： @凌漪_ @板烧鱼仔 @Yuxn. 背景Jaccard相似度 两个集合 A 和 B，我们关心它们的Jaccard相似度                                               J                      (">
+    <meta name="description" content="Minhash算法直观理解作者： @凌漪_ @板烧鱼仔 @Yuxn. 背景Jaccard相似度 两个集合 A 和 B，我们关心它们的Jaccard相似度                                               J                      (                      A                      ,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yajing luo&#39;s blog">
-<meta property="og:url" content="http://example.com/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E6%96%87%E6%9C%AC%E5%8E%BB%E9%87%8D%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%90%86%E8%A7%A3Minhash%E7%AE%97%E6%B3%95/index.html">
-<meta property="og:site_name" content="yajing luo&#39;s blog">
-<meta property="og:description" content="原创：  【文本去重】通俗易懂理解Minhash算法 【文本去重】通俗易懂理解Minhash算法Minhash算法直观理解作者： @凌漪_ @板烧鱼仔 @Yuxn. 背景Jaccard相似度 两个集合 A 和 B，我们关心它们的Jaccard相似度                                               J                      (">
+<meta property="og:title" content="【文本去重】通俗易懂理解Minhash算法">
+<meta property="og:url" content="https://abigail61.github.io/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E6%96%87%E6%9C%AC%E5%8E%BB%E9%87%8D%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%90%86%E8%A7%A3Minhash%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Abigail&#39;s blog">
+<meta property="og:description" content="Minhash算法直观理解作者： @凌漪_ @板烧鱼仔 @Yuxn. 背景Jaccard相似度 两个集合 A 和 B，我们关心它们的Jaccard相似度                                               J                      (                      A                      ,">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-23T08:44:26.548Z">
-<meta property="article:modified_time" content="2024-11-23T07:12:13.006Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2024-11-23T13:36:20.111Z">
+<meta property="article:author" content="Yajing Luo">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>yajing luo&#39;s blog</title>
+  <title>【文本去重】通俗易懂理解Minhash算法 - Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"abigail61.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"python"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -101,7 +101,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fany Full&#39;s Blog</strong>
+      <strong>Abigail&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -197,13 +197,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/karigurashi022.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="【文本去重】通俗易懂理解Minhash算法"></span>
           
         </div>
 
@@ -227,7 +227,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.9k 字
+          2.8k 字
         
       </span>
     
@@ -276,13 +276,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">【文本去重】通俗易懂理解Minhash算法</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="原创"><a href="#原创" class="headerlink" title="原创"></a>原创</h1><p>：  【文本去重】通俗易懂理解Minhash算法</p>
-<h1 id="【文本去重】通俗易懂理解Minhash算法"><a href="#【文本去重】通俗易懂理解Minhash算法" class="headerlink" title="【文本去重】通俗易懂理解Minhash算法"></a>【文本去重】通俗易懂理解Minhash算法</h1><h2 id="Minhash算法直观理解"><a href="#Minhash算法直观理解" class="headerlink" title="Minhash算法直观理解"></a>Minhash算法直观理解</h2><p>作者： @凌漪_ @板烧鱼仔 @Yuxn.</p>
+                <h2 id="Minhash算法直观理解"><a href="#Minhash算法直观理解" class="headerlink" title="Minhash算法直观理解"></a>Minhash算法直观理解</h2><p>作者： @凌漪_ @板烧鱼仔 @Yuxn.</p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><li>Jaccard相似度<br/> 两个集合 A 和 B，我们关心它们的Jaccard相似度<br/>  
        
         
@@ -1189,10 +1188,6 @@ Pr(某一种投影(A)=某一种投影(B))=A∪BA∩B​
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mergen/p/5276501.html">使用MinHash算法计算两个集合的相似度 - unrealwalker - 博客园 (cnblogs.com)</a><br/> <a target="_blank" rel="noopener" href="https://mccormickml.com/2015/06/12/minhash-tutorial-with-python-code/">MinHash 教程与 Python 代码 · 克里斯·麦科米克 — MinHash Tutorial with Python Code · Chris McCormick (mccormickml.com)</a><br/> <a target="_blank" rel="noopener" href="https://ansvver.github.io/lsh_minhash.html">ansvver | 局部敏感哈希 - MinHash</a></p>
-<p>内容来源：csdn.net</p>
-<p>作者昵称：凌漪_</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706/article/details/141640451">https://blog.csdn.net/a61022706/article/details/141640451</a></p>
-<p>作者主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a61022706">https://blog.csdn.net/a61022706</a></p>
 
                 
               </div>
@@ -1210,14 +1205,14 @@ Pr(某一种投影(A)=某一种投影(B))=A∪BA∩B​
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/11/23/原创--  【文本去重】通俗易懂理解Minhash算法/</div>
+      <div>【文本去重】通俗易懂理解Minhash算法</div>
+      <div>https://abigail61.github.io/2024/11/23/原创--  【文本去重】通俗易懂理解Minhash算法/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Yajing Luo</div>
         </div>
       
       
@@ -1255,9 +1250,9 @@ Pr(某一种投影(A)=某一种投影(B))=A∪BA∩B​
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87%E3%80%91overleaf%E5%85%AC%E5%BC%8F%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8%E5%B9%B6%E4%B8%94%E8%A2%AB%E9%87%8D%E5%A4%8D%E6%B7%BB%E5%8A%A0%E8%87%B3%E6%AD%A3%E6%96%87%E5%86%85%EF%BC%8C%E6%AD%A3%E6%96%87%E5%86%85$%E7%AC%A6%E5%8F%B7%E6%B6%88%E5%A4%B1%EF%BC%8C%E7%BC%96%E8%AF%91%E6%8A%A5%E9%94%99Missing%20$%20inserted.inserted%20text%E3%80%82/" title="">
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87%E3%80%91conda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E9%87%8C%E4%BD%BF%E7%94%A8which%20python%20%E4%B8%8E%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%90%8D%E7%A7%B0%E5%AF%B9%E5%BA%94%E4%B8%8D%E4%B8%8A%E7%9A%84%E9%97%AE%E9%A2%98/" title="【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">【疑难杂症】conda虚拟环境里使用which python 与虚拟环境名称对应不上的问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1265,8 +1260,8 @@ Pr(某一种投影(A)=某一种投影(B))=A∪BA∩B​
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E5%82%BB%E7%93%9C%E6%95%99%E7%A8%8B%E3%80%91jsp%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E5%8F%8A%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%A9%BA%E6%8C%87%E9%92%88%E7%9A%84%E5%9D%91%E3%80%82%5B%E9%99%84java%E4%B8%8EMysql%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%5D/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E5%82%BB%E7%93%9C%E6%95%99%E7%A8%8B%E3%80%91jsp%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E5%8F%8A%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%A9%BA%E6%8C%87%E9%92%88%E7%9A%84%E5%9D%91%E3%80%82%5B%E9%99%84java%E4%B8%8EMysql%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%5D/" title="【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]">
+                        <span class="hidden-mobile">【傻瓜教程】jsp连接MySQL数据库，及连接过程中出现空指针的坑。[附java与Mysql驱动程序下载]</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
