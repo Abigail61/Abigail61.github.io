@@ -231,6 +231,259 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/12/25/%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E5%90%84%E7%A7%8D%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" target="_self">
+          结合代码理解各种注意力机制（一）：自注意力机制
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/12/25/%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E5%90%84%E7%A7%8D%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" target="_self">
+        <div>
+          transformer中最重要的就是注意力机制，从经典论文Attention is all you need出发，到后来的各种注意力机制的改进。本系列将手撕各种注意力机制，包括但不限于：  self-attention(SA) 自注意力机制 multi-head attention(MHA) 多头注意力机制 multi-query attention(MQA) 分组注意力机制  在此系列的第一篇中
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-12-25 14:55" pubdate>
+              2024-12-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BB%A3%E7%A0%81/">#代码</a>
+            
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">#注意力机制</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/12/05/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E5%8F%98%E5%8C%96/" target="_self">
+          torch代码演示模型训练流程中的梯度变化
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/12/05/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E5%8F%98%E5%8C%96/" target="_self">
+        <div>
+          1234import torch import torch.nn as nnimport torch.optim as optimimport random   1234567891011121314random.seed(42)# 定义一个简单的神经网络模型class SimpleNN(nn.Module):    def __init__(self):        super(SimpleN
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-12-05 15:55" pubdate>
+              2024-12-05
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%A8%A1%E5%9E%8B/">#模型</a>
+            
+              <a href="/tags/pytorch/">#pytorch</a>
+            
+              <a href="/tags/%E6%A2%AF%E5%BA%A6/">#梯度</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8Agit%20clone%20github%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%BF%87%E7%A8%8B/" target="_self">
+          在服务器上git clone github项目的过程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8Agit%20clone%20github%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%BF%87%E7%A8%8B/" target="_self">
+        <div>
+          在服务器上与本地clone项目对比还是有点区别的，主要在于git安装下载的权限不足，还有生成SSH key的步骤。 一 安装git1.作为服务器上的非root用户，下载git安装包。（这里的版本是2.34.1，可以参考官网更换为更高版本号的git 12wget https://www.kernel.org/pub/software/scm/git/git-2.34.1.tar.gz  2.解压 1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-23 16:44" pubdate>
+              2024-11-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%89%93%E4%B8%8D%E5%BC%80%EF%BC%8C%E6%98%BE%E7%A4%BA%E5%87%BD%E6%95%B0%E4%B8%8D%E6%AD%A3%E7%A1%AE/" target="_self">
+          移动硬盘分区打不开，显示函数不正确
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%89%93%E4%B8%8D%E5%BC%80%EF%BC%8C%E6%98%BE%E7%A4%BA%E5%87%BD%E6%95%B0%E4%B8%8D%E6%AD%A3%E7%A1%AE/" target="_self">
+        <div>
+          某天移动硬盘突然打不开文件了，显示函数不正确，以为硬盘被我硬插拔弄坏了。 如果你的是装在硬盘壳里的，没有装在电脑里，可以打开硬盘壳看看，卡是不是松了。 如果松了就重新插回去就好啦！
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-23 16:44" pubdate>
+              2024-11-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E6%B8%A9%E5%BA%A6%E8%99%BD%E5%AF%92%EF%BC%8C%E5%85%B6%E9%81%93%E7%8A%B9%E5%8F%98-OpenAI%E6%8E%A5%E5%8F%A3%E4%B9%8B%E6%B8%A9%E5%BA%A6%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%BA0%EF%BC%8C%E4%B8%BA%E4%BD%95%E6%AF%8F%E6%AC%A1%E5%9B%9E%E5%A4%8D%E4%BB%8D%E6%9C%89%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%EF%BC%9F/" target="_self">
+          温度虽寒，其道犹变：OpenAI接口之温度参数设置为0，为何每次回复仍有不确定性？
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E6%B8%A9%E5%BA%A6%E8%99%BD%E5%AF%92%EF%BC%8C%E5%85%B6%E9%81%93%E7%8A%B9%E5%8F%98-OpenAI%E6%8E%A5%E5%8F%A3%E4%B9%8B%E6%B8%A9%E5%BA%A6%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%BA0%EF%BC%8C%E4%B8%BA%E4%BD%95%E6%AF%8F%E6%AC%A1%E5%9B%9E%E5%A4%8D%E4%BB%8D%E6%9C%89%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%EF%BC%9F/" target="_self">
+        <div>
+          问题描述调用openai API，使用templature &#x3D; 0，每次返回的内容仍有一些不同 12345678910111213141516&amp;gt;&amp;gt;&amp;gt; client = OpenAI(...             api_key=api_key,...             base_url=api_base)#第一次尝试&amp;gt;&am
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-23 16:44" pubdate>
+              2024-11-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8vscode%E4%B8%AD%E5%AF%B9%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%A4%9A%E5%8D%A1%E8%BF%90%E8%A1%8C%E7%9A%84bash%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8Cdebug-/" target="_self">
+          如何在vscode中对在服务器上多卡运行的bash脚本进行debug?
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8vscode%E4%B8%AD%E5%AF%B9%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%A4%9A%E5%8D%A1%E8%BF%90%E8%A1%8C%E7%9A%84bash%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8Cdebug-/" target="_self">
+        <div>
+          ? 问题描述使用vscode可以很方便地添加断点，进行代码调试。 在使用服务器时，我们的python代码通常是通过bash脚本来执行的，那么如何进行debug呢？ 待运行的bash 脚本示例前半段定义了一些参数，后半段是执行python代码 123456789101112export CUDA_VISIBLE_DEVICES=1,2model_path=/models/Mistral-7B-Ins
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-23 16:44" pubdate>
+              2024-11-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8huggingface%E4%B8%8A%E7%94%B3%E8%AF%B7%E4%B8%8B%E8%BD%BD%E4%BD%BF%E7%94%A8llama2-3%E6%A8%A1%E5%9E%8B/" target="_self">
+          如何在huggingface上申请下载使用llama2/3模型
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E5%9C%A8huggingface%E4%B8%8A%E7%94%B3%E8%AF%B7%E4%B8%8B%E8%BD%BD%E4%BD%BF%E7%94%A8llama2-3%E6%A8%A1%E5%9E%8B/" target="_self">
+        <div>
+          1. 在对应模型的huggingface页面上提交申请搜索对应的模型型号  登录huggingface，在模型详情页面上，找到这个表单，填写内容，提交申请。需要使用梯子，country填写梯子的位置吧(比如美国）  等待一小时左右，会有邮件通知。  创建access token 在huggingface上登录后，点击头像，选择setting，点击左侧的access tokens，新建一个token
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-23 16:44" pubdate>
+              2024-11-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E6%8A%8A%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0%E8%87%B3github/" target="_self">
           如何把服务器代码上传至github
         </a>
@@ -239,7 +492,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E5%A6%82%E4%BD%95%E6%8A%8A%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0%E8%87%B3github/" target="_self">
         <div>
-          0. 准备本教程适用于已经在服务器上下载好了git并和github账号进行关联，如果没有请先移步至这个教程 1. 单击new在github上新建项目 输入项目名称，建好后会有一串类似于&#103;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#120;&#120;&#120;&#x2e;&#x67;&#x69;&#116;的项目路径（主
+          0. 准备本教程适用于已经在服务器上下载好了git并和github账号进行关联，如果没有请先移步至这个教程 1. 单击new在github上新建项目 输入项目名称，建好后会有一串类似于&#x67;&#x69;&#x74;&#64;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x78;&#120;&#x78;&#46;&#103;&#105;&#116;的项目路径（主要
         </div>
       </a>
 
@@ -324,251 +577,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20python%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E7%99%BE%E7%A7%91%E5%B1%9E%E6%80%A7%E6%A1%86/" target="_self">
-          python爬取百度百科属性框
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20python%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E7%99%BE%E7%A7%91%E5%B1%9E%E6%80%A7%E6%A1%86/" target="_self">
-        <div>
-          python爬取百度百科属性框记录由于构建知识图谱时需要爬取一些实体属性，故考虑爬取百度百科的属性框，如图：  实体名称为马寅初，想根据以上的信息框爬取一些三元组关系，并保存到csv文件中，格式如下： |实体|关系|属性|——|马寅初|中文名|马寅初|马寅初|外文名|马寅初|马寅初|国籍|中国|马寅初|出生日期|… 一个两个实体可以考虑在网页上直接复制粘贴，但有很多个该怎么办呢？故考虑选用pyth
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-23 16:44" pubdate>
-              2024-11-23
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">#python</a>
-            
-              <a href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20pycharm%E9%87%8Ctest%20connection%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F%EF%BC%8C%E4%BD%86%E6%98%AF%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6%EF%BC%8Cdeployment%E5%8F%98%E7%81%B0/" target="_self">
-          pycharm里test connection连接成功，但是无法同步服务器文件，deployment变灰
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20pycharm%E9%87%8Ctest%20connection%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F%EF%BC%8C%E4%BD%86%E6%98%AF%E6%97%A0%E6%B3%95%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6%EF%BC%8Cdeployment%E5%8F%98%E7%81%B0/" target="_self">
-        <div>
-          如果服务器test connection连接成功，但是无法同步文件。  可以尝试以下方式： 点击tools-deployment-browse remonte host，选择要连接的服务器的文件夹  如果能正常显示服务器文件夹，再点击tools-deployment，注意要把要选择的服务器点击 打钩！，使其变成加粗的白色。  这样就可以正常同步文件了。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-23 16:44" pubdate>
-              2024-11-23
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20Perplexity-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87%E2%80%94%E2%80%94%E5%9B%B0%E6%83%91%E5%BA%A6/" target="_self">
-          Perplexity：深入理解语言模型评价指标——困惑度
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20Perplexity-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87%E2%80%94%E2%80%94%E5%9B%B0%E6%83%91%E5%BA%A6/" target="_self">
-        <div>
-          语言模型好坏的衡量语言模型（Language Model）会进行文本生成。如何衡量不同语言模型的好坏呢？一般而言，在机器学习中，我们通常将数据划分为训练集和测试集。在训练集上训练模型，并在测试集上衡量模型的拟合能力。如果拟合得越精确，代表模型越强。 什么叫”拟合能力越好“呢？由于语言模型是根据各个词出现的不同概率来进行文本生成的，所以我们可以给定一段文本序列（即测试集），如果模型生成这段话的概率越
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-23 16:44" pubdate>
-              2024-11-23
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20Mysql%E7%99%BB%E5%BD%95%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99/" target="_self">
-          Mysql登录常见报错
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20Mysql%E7%99%BB%E5%BD%95%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99/" target="_self">
-        <div>
-          mysql 8.0登录失败常见报错，保姆级登录教程。气死了，过了好久了，也都忘记自己的mysql怎么登录了。之前花了好长时间来找网上的教程但大多都很过时了，甚至想直接重装，但也不甘心。于是鼓捣半天终于登上了。 常见报错：  mysql 服务正在启动 .mysql 服务无法启动。服务没有报告任何错误。在命令行中切换到mysql的bin路径，输入net start mysql后显示服务无法启动。  1
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-23 16:44" pubdate>
-              2024-11-23
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20mobaXterm%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%9C%A8Vscode%E4%B8%AD%E4%BD%BF%E7%94%A8ppk%E5%AF%86%E9%92%A5%E8%BF%9B%E8%A1%8C%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" target="_self">
-          mobaXterm使用密钥免密登录服务器，并且在Vscode中使用ppk密钥进行远程连接
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20mobaXterm%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%9C%A8Vscode%E4%B8%AD%E4%BD%BF%E7%94%A8ppk%E5%AF%86%E9%92%A5%E8%BF%9B%E8%A1%8C%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" target="_self">
-        <div>
-          本文介绍在mobaXterm上免密登录的过程，并且在vscode中也免密登录服务器。 1. mobaXterm免密登录服务器需要首先说明的是，mobaXterm里有一个记住密码的功能。如果你只是不想手动输入密码，大多数情况下使用这一功能即可。 这里介绍的情况是，远程主机不支持密码登录（为了安全考虑吧，之前服务器就是被攻击了，所以老师取消了密码登录），所以我们需要生成公钥和私钥，来使用密钥免密登录。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-23 16:44" pubdate>
-              2024-11-23
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20InternLM2%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" target="_self">
-          InternLM2论文笔记
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20InternLM2%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          这里是阅读InternLM2论文的笔记 微调方式 在大模型的下游应用中，可以有两种微调方式  增量续训 即无监督的方式，让模型学习一些新知识，比如某些垂直领域的新知识 使用的数据有：书籍，文章，代码等1. 有监督微调 为了让模型学会理解指令进行对话，或者注入少量的领域知识 使用的数据为高质量的对话和问答的数据 全量参数微调 部分参数微调 （lora等） 扩展上下文长度 必要性： 1. 检索增强生成
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-23 16:44" pubdate>
-              2024-11-23
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20Anaconda%E4%B8%8B%E7%9A%84pytorch%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%8F%8Apycharm%E5%AF%BC%E5%85%A5%EF%BC%88win10+CPU)/" target="_self">
-          Anaconda下的pytorch环境配置及pycharm导入（win10+CPU)
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20Anaconda%E4%B8%8B%E7%9A%84pytorch%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%8F%8Apycharm%E5%AF%BC%E5%85%A5%EF%BC%88win10+CPU)/" target="_self">
-        <div>
-          Anaconda下的pytorch环境配置及pycharm导入（win10+CPU)Anaconda下的pytorch环境配置及pycharm导入（win10+CPU)首先下载Anaconda与pycharm两个软件，可移步至各教程。注意pycharm专业版的需要破解，否则无法远程连接服务器调试。 1.创建Pytorch环境。我们首先使用anaconda来创建一个Pytorchd的工作环境。打开A
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-23 16:44" pubdate>
-              2024-11-23
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
