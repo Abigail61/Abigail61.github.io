@@ -26,14 +26,14 @@
 <meta property="og:site_name" content="Abigail&#39;s blog">
 <meta property="og:description" content="在深度学习的训练过程中，我们经常会遇到显存限制的问题，尤其是在大规模模型训练时，直接使用大批次（Large Batch）进行梯度计算往往会导致显存溢出（Out of Memory, OOM）。为了解决这个问题，梯度累积（Gradient Accumulation） 技术应运而生，它允许在 小批次（Micro-Batch） 的基础上 逐步累积梯度，最后模拟出 等效的大批次（Large Batch），">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://abigail61.github.io/images/3a82c8c36541938a5d1e1120958a706ee267773013182b124323020c39bb4f5d.png">
+<meta property="og:image" content="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202503161850050.png">
 <meta property="article:published_time" content="2025-03-16T08:55:32.414Z">
-<meta property="article:modified_time" content="2025-03-16T10:41:09.873Z">
+<meta property="article:modified_time" content="2025-03-16T10:50:53.047Z">
 <meta property="article:author" content="Yajing Luo">
 <meta property="article:tag" content="模型训练">
 <meta property="article:tag" content="显存优化">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://abigail61.github.io/images/3a82c8c36541938a5d1e1120958a706ee267773013182b124323020c39bb4f5d.png">
+<meta name="twitter:image" content="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202503161850050.png">
   
   
   
@@ -296,7 +296,7 @@
 <p>运行 8 次小批次训练（每次 micro_batch_size&#x3D;16）。<br>在每次训练后计算梯度并累积到 param.grad 中，（也就是进行梯度的累加）梯度完成计算后，计算图和激活值就会释放，但不更新参数。<br>第 8 次训练完成后，执行 optimizer.step() 一次性更新参数，然后 optimizer.zero_grad() 清空梯度。</p>
 <p>这样显存占用就会大大减小啦！</p>
 <h1 id="小batch-size的梯度累积和大batch-size的数学等价性"><a href="#小batch-size的梯度累积和大batch-size的数学等价性" class="headerlink" title="小batch size的梯度累积和大batch size的数学等价性"></a>小batch size的梯度累积和大batch size的数学等价性</h1><p>你可能会奇怪，在多次小bs训练时，把梯度进行简单的相加再进行更新，和单次大bs得到的效果会一致吗？</p>
-<p>梯度下降的本质是对损失函数 $L$ 求参数 $W$ 的梯度：<br><img src="/../../images/3a82c8c36541938a5d1e1120958a706ee267773013182b124323020c39bb4f5d.png" srcset="/img/loading.gif" lazyload alt="picture 0"><br>其中：$N$ 是 batch size, $L_i$ 是单个样本的 loss<br>由于梯度是线性可加的，所以无论是：<br>一次计算 batch_size&#x3D;128 的梯度<br>还是累积 batch_size&#x3D;16 的梯度 8 次<br>最终得到的梯度 是完全相同的，只要 optimizer.step() 之前模型参数不变。</p>
+<p>梯度下降的本质是对损失函数 $L$ 求参数 $W$ 的梯度：<br><img src="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202503161850050.png" srcset="/img/loading.gif" lazyload alt="picture 0"><br>其中：$N$ 是 batch size, $L_i$ 是单个样本的 loss<br>由于梯度是线性可加的，所以无论是：<br>一次计算 batch_size&#x3D;128 的梯度<br>还是累积 batch_size&#x3D;16 的梯度 8 次<br>最终得到的梯度 是完全相同的，只要 optimizer.step() 之前模型参数不变。</p>
 
                 
               </div>
