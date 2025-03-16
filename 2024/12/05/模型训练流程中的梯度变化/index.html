@@ -19,15 +19,15 @@
   <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1234import torch import torch.nn as nnimport torch.optim as optimimport random   1234567891011121314random.seed(42)# 定义一个简单的神经网络模型class SimpleNN(nn.Module):    def __init__(self):        super(SimpleN">
+    <meta name="description" content="1234import torch import torch.nn as nnimport torch.optim as optimimport random 一个在标准训练过程如下： 进行前向传播（forward pass），得到中间激活值和计算图，计算 loss。进行反向传播（backward pass），根据计算图来计算梯度，即 loss.backward()。梯度的形状和参数形状一致。更新参">
 <meta property="og:type" content="article">
 <meta property="og:title" content="torch代码演示模型训练流程中的梯度变化">
 <meta property="og:url" content="https://abigail61.github.io/2024/12/05/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E5%8F%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Abigail&#39;s blog">
-<meta property="og:description" content="1234import torch import torch.nn as nnimport torch.optim as optimimport random   1234567891011121314random.seed(42)# 定义一个简单的神经网络模型class SimpleNN(nn.Module):    def __init__(self):        super(SimpleN">
+<meta property="og:description" content="1234import torch import torch.nn as nnimport torch.optim as optimimport random 一个在标准训练过程如下： 进行前向传播（forward pass），得到中间激活值和计算图，计算 loss。进行反向传播（backward pass），根据计算图来计算梯度，即 loss.backward()。梯度的形状和参数形状一致。更新参">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-05T07:55:27.736Z">
-<meta property="article:modified_time" content="2024-12-05T08:06:31.666Z">
+<meta property="article:modified_time" content="2025-03-16T10:01:32.754Z">
 <meta property="article:author" content="Yajing Luo">
 <meta property="article:tag" content="模型">
 <meta property="article:tag" content="pytorch">
@@ -230,7 +230,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.2k 字
+          3.3k 字
         
       </span>
     
@@ -242,7 +242,7 @@
         
         
           <!-- compatible with older versions-->
-          27 分钟
+          28 分钟
         
       </span>
     
@@ -285,8 +285,8 @@
               <div class="markdown-body">
                 
                 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch <br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><span class="hljs-keyword">import</span> random<br></code></pre></td></tr></table></figure>
-
-
+<p>一个在标准训练过程如下：</p>
+<p>进行前向传播（forward pass），得到中间激活值和计算图，计算 loss。<br>进行反向传播（backward pass），根据计算图来计算梯度，即 loss.backward()。梯度的形状和参数形状一致。<br>更新参数：调用 optimizer.step() 进行参数更新，并清空梯度。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">random.seed(<span class="hljs-number">42</span>)<br><span class="hljs-comment"># 定义一个简单的神经网络模型</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(SimpleNN, <span class="hljs-variable language_">self</span>).__init__()<br>        <span class="hljs-variable language_">self</span>.fc1 = nn.Linear(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>) <span class="hljs-comment"># 输入3维，输出2维</span><br>        <span class="hljs-variable language_">self</span>.fc2 = nn.Linear(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>) <span class="hljs-comment"># 输入2维，输出3维</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        x -&gt; fc1(down projection) -&gt; relu -&gt; fc2(up projection) -&gt; +x -&gt; output</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        x = x + <span class="hljs-variable language_">self</span>.fc2(torch.relu(<span class="hljs-variable language_">self</span>.fc1(x)))<br>        <span class="hljs-keyword">return</span> x<br></code></pre></td></tr></table></figure>
 
 
