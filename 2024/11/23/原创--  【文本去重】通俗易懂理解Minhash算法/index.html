@@ -19,21 +19,23 @@
   <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Minhash算法直观理解作者： @凌漪_ @板烧鱼仔 @Yuxn. 背景Jaccard相似度 两个集合 A 和 B，我们关心它们的Jaccard相似度                                               J                      (                      A                      ,">
+    <meta name="description" content="作者： @凌漪_ @板烧鱼仔 @Yuxn. 背景 Jaccard相似度 两个集合 A 和 B，我们关心它们的Jaccard相似度$$ J(A,B)&#x3D;\frac{∣A∪B∣}{∣A∩B∣​}  $$    Jaccard相似度描述了两个集合之间的相似程度。    使用场景1：两个文档之间的相似度。注意: jaccard相似度并没有提取文档的任何语义，只是在查看它们是否包含相同的单词。因此，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【文本去重】通俗易懂理解Minhash算法">
+<meta property="og:title" content="Minhash算法直观理解">
 <meta property="og:url" content="https://abigail61.github.io/2024/11/23/%E5%8E%9F%E5%88%9B--%20%20%E3%80%90%E6%96%87%E6%9C%AC%E5%8E%BB%E9%87%8D%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%90%86%E8%A7%A3Minhash%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Abigail&#39;s blog">
-<meta property="og:description" content="Minhash算法直观理解作者： @凌漪_ @板烧鱼仔 @Yuxn. 背景Jaccard相似度 两个集合 A 和 B，我们关心它们的Jaccard相似度                                               J                      (                      A                      ,">
+<meta property="og:description" content="作者： @凌漪_ @板烧鱼仔 @Yuxn. 背景 Jaccard相似度 两个集合 A 和 B，我们关心它们的Jaccard相似度$$ J(A,B)&#x3D;\frac{∣A∪B∣}{∣A∩B∣​}  $$    Jaccard相似度描述了两个集合之间的相似程度。    使用场景1：两个文档之间的相似度。注意: jaccard相似度并没有提取文档的任何语义，只是在查看它们是否包含相同的单词。因此，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-23T08:44:26.548Z">
-<meta property="article:modified_time" content="2024-11-23T13:36:20.111Z">
+<meta property="article:modified_time" content="2025-03-29T06:02:17.871Z">
 <meta property="article:author" content="Yajing Luo">
+<meta property="article:tag" content="文本去重">
+<meta property="article:tag" content="Minhash">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>【文本去重】通俗易懂理解Minhash算法 - Abigail&#39;s blog</title>
+  <title>Minhash算法直观理解 - Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -203,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【文本去重】通俗易懂理解Minhash算法"></span>
+            <span id="subtitle" data-typed-text="Minhash算法直观理解"></span>
           
         </div>
 
@@ -227,7 +229,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.8k 字
+          2.5k 字
         
       </span>
     
@@ -239,7 +241,7 @@
         
         
           <!-- compatible with older versions-->
-          24 分钟
+          21 分钟
         
       </span>
     
@@ -276,918 +278,207 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">【文本去重】通俗易懂理解Minhash算法</h1>
+            <h1 id="seo-header">Minhash算法直观理解</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Minhash算法直观理解"><a href="#Minhash算法直观理解" class="headerlink" title="Minhash算法直观理解"></a>Minhash算法直观理解</h2><p>作者： @凌漪_ @板烧鱼仔 @Yuxn.</p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><li>Jaccard相似度<br/> 两个集合 A 和 B，我们关心它们的Jaccard相似度<br/>  
-       
-        
-         
-         
-<pre><code class="hljs">       J 
-      
-     
-       ( 
-      
-     
-       A 
-      
-     
-       , 
-      
-     
-       B 
-      
-     
-       ) 
-      
-     
-       = 
-      
-      
-       
-       
-         ∣ 
-        
-       
-         A 
-        
-       
-         ∪ 
-        
-       
-         B 
-        
-       
-         ∣ 
-        
-       
-       
-       
-         ∣ 
-        
-       
-         A 
-        
-       
-         ∩ 
-        
-       
-         B 
-        
-       
-         ∣ 
-        
-       
-         ​ 
-        
-       
-      
-     
-    
-      J(A,B)=\frac&#123;∣A∪B∣&#125;&#123;∣A∩B∣​&#125; 
-     
-    
-  J(A,B)=∣A∩B∣​∣A∪B∣​&lt;br/&gt; Jaccard相似度描述了两个集合之间的相似程度。&lt;br/&gt; 使用场景1：两个文档之间的相似度。注意: jaccard相似度并没有提取文档的任何语义，只是在查看它们是否包含相同的单词。因此，“大王八”和“八大王”的jaccard相似度为1。在计算文档之间的相似度时，通常不会基于词级别，而是n-gram（n个连续单词），再计算交集和并集的元素的个数，得到jaccard相似度。&lt;br/&gt; 使用场景2：你的歌单和我的歌单之间的相似度&lt;/li&gt;&lt;li&gt;计算Jaccard效率低下&lt;br/&gt; 当拥有一个大型的文档集合时（比如里面有N篇文档），我们需要找出其中相似度高的文档对。此时就需要对文档进行来两两比较，计算Jaccard，得到一个 
-  
-   
-    
-    
-      N 
-     
-    
-      ∗ 
-     
-    
-      N 
-     
-    
-   
-     N * N 
-    
-   
- N∗N的矩阵。（当然，为了避免重复进行2次计算：文档A与文档B，文档B与文档A，其中有一半上三角的值为0），所需要的比较次数为 ( 
-  
-   
-    
-     
-     
-       N 
-      
-     
-       2 
-      
-     
-    
-      ) 
-     
-    
-      / 
-     
-    
-      2 
-     
-    
-   
-     N^2) /2 
-    
-   
- N2)/2,计算复杂度为 
-  
-   
-    
-    
-      O 
-     
-    
-      ( 
-     
-     
-     
-       N 
-      
-     
-       2 
-      
-     
-    
-      ) 
-     
-    
-   
-     O(N^2) 
-    
-   
- O(N2)。而在每次进行jaccard比较时，需要交集和并集，计算复杂度取决于文档的大小，假设所有文档的长度相等，都包含M个单词，则计算复杂度为 
-  
-   
-    
-    
-      O 
-     
-    
-      ( 
-     
-     
-     
-       N 
-      
-     
-       2 
-      
-     
-    
-      ⋅ 
-     
-    
-      M 
-     
-    
-      ) 
-     
-    
-   
-     O(N^2 · M) 
-    
-   
- O(N2⋅M)。就会耗费很长时间，计算和内存消耗变得不可承受&lt;/li&gt;&lt;li&gt;Jaccard的计算替代方式：Minhash算法&lt;br/&gt; Minhash的好处：Minhash可以实现把一篇文章用一个较短的signature表示，这个signature有个很好的性质： 两个minhash signature的Jaccard相似度和原始文本的Jaccard相似度在概率上是一致的。 比较一次的所耗费的时间为numHash，总的计算复杂度为 
-  
-   
-    
-    
-      O 
-     
-    
-      ( 
-     
-     
-     
-       N 
-      
-     
-       2 
-      
-     
-    
-      ⋅ 
-     
-    
-      n 
-     
-    
-      u 
-     
-    
-      m 
-     
-    
-      H 
-     
-    
-      a 
-     
-    
-      s 
-     
-    
-      h 
-     
-    
-      ) 
-     
-    
-   
-     O(N^2 · numHash) 
-    
-   
- O(N2⋅numHash)。而numHash是可以自己设置的大小，这就远小于M。&lt;/li&gt;
-</code></pre>
-<h3 id="minhash如何工作？"><a href="#minhash如何工作？" class="headerlink" title="minhash如何工作？"></a>minhash如何工作？</h3><p>先介绍它的工作方式，可能能帮助你更好理解这个算法。<br/> 前提假设：如果两个集合非常相似 → 那么对这两个集合应用同一种变化，得到的变化结果也很相似 → 对这两个变化结果选取某种特征（比如选最小值），它们有很高的概率是相等的。</p>
-<ol>
-<li>假设我们拥有2个集合<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 设置2个集合A和B</span><br><span class="hljs-attribute">A</span> = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;<br><span class="hljs-attribute">B</span> = &#123;<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>&#125;<br><br></code></pre></td></tr></table></figure></li>
-<li>其jaccard相似度为：<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sas">pr<span class="hljs-meta">int</span>(<span class="hljs-string">&#x27;Jaccard相似度：&#x27;</span>, le<span class="hljs-meta">n</span>(A <span class="hljs-variable">&amp;amp</span>; B) / le<span class="hljs-meta">n</span>(A | B))<br>Jaccard相似度： 0.4285<br><br></code></pre></td></tr></table></figure></li>
+                <p>作者： @凌漪_ @板烧鱼仔 @Yuxn.</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
+<li>Jaccard相似度<br> 两个集合 A 和 B，我们关心它们的Jaccard相似度<br>$$<br> J(A,B)&#x3D;\frac{∣A∪B∣}{∣A∩B∣​}</li>
 </ol>
-<h4 id="基于hash函数的算法"><a href="#基于hash函数的算法" class="headerlink" title="基于hash函数的算法"></a>基于hash函数的算法</h4><p>我们拥有哈希函数（有点像加密算法），它能将整数x映射到一个不同的整数，并且不会产生冲突（c 是大素数）。不同的哈希函数相当于不同的投影规则<br/>  </p>
-<pre><code class="hljs">      h 
-     
-    
-      a 
-     
-    
-      s 
-     
-    
-      h 
-     
-    
-      ( 
-     
-    
-      x 
-     
-    
-      ) 
-     
-    
-      = 
-     
-    
-      ( 
-     
-    
-      a 
-     
-    
-      x 
-     
-    
-      + 
-     
-    
-      b 
-     
-    
-      ) 
-     
-    
-      % 
-     
-    
-      c 
-     
-    
-   
-     hash(x) = (ax + b )\% c 
-    
-   
- hash(x)=(ax+b)%c
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#设置某个哈希函数</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">hash</span>(<span class="hljs-params">x, a=<span class="hljs-number">1</span>, b=<span class="hljs-number">1</span>, p=<span class="hljs-number">11</span></span>):<br><br>    <span class="hljs-keyword">return</span> (a * x + b) % p<br><br><span class="hljs-comment">#对集合里的元素进行哈希，并计算最小哈希值</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">minhash</span>(<span class="hljs-params">s, <span class="hljs-built_in">hash</span></span>):<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>(<span class="hljs-built_in">hash</span>(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> s)<br><br></code></pre></td></tr></table></figure>
+<p>$$<br>    Jaccard相似度描述了两个集合之间的相似程度。<br>    使用场景1：两个文档之间的相似度。注意: jaccard相似度并没有提取文档的任何语义，只是在查看它们是否包含相同的单词。因此，“大王八”和“八大王”的jaccard相似度为1。在计算文档之间的相似度时，通常不会基于词级别，而是n-gram（n个连续单词），再计算交集和并集的元素的个数，得到jaccard相似度。<br>    使用场景2：你的歌单和我的歌单之间的相似度</p>
+<ol>
+<li>计算Jaccard效率低下<br> 当拥有一个大型的文档集合时（比如里面有N篇文档），我们需要找出其中相似度高的文档对。此时就需要对文档进行来两两比较，计算Jaccard，得到一个$N * N$的矩阵。（当然，为了避免重复进行2次计算：文档A与文档B，文档B与文档A，其中有一半上三角的值为0），所需要的比较次数为 ($N^2) &#x2F;2$,计算复杂度为$O(N^2)$。而在每次进行jaccard比较时，需要交集和并集，计算复杂度取决于文档的大小，假设所有文档的长度相等，都包含M个单词，则计算复杂度为$O(N^2 · M)$。就会耗费很长时间，计算和内存消耗变得不可承受</li>
+<li>Jaccard的计算替代方式：Minhash算法<br> Minhash的好处：Minhash可以实现把一篇文章用一个较短的signature表示，这个signature有个很好的性质： 两个minhash signature的Jaccard相似度和原始文本的Jaccard相似度在概率上是一致的。 比较一次的所耗费的时间为numHash，总的计算复杂度为$O(N^2 · numHash)$。而numHash是可以自己设置的大小，这就远小于M。</li>
+</ol>
+<h2 id="minhash如何工作？"><a href="#minhash如何工作？" class="headerlink" title="minhash如何工作？"></a>minhash如何工作？</h2><p>先介绍它的工作方式，可能能帮助你更好理解这个算法。<br>前提假设：如果两个集合非常相似 → 那么对这两个集合应用同一种变化，得到的变化结果也很相似  →   对这两个变化结果选取某种特征（比如选最小值），它们有很高的概率是相等的。</p>
+<ol>
+<li><p>假设我们拥有2个集合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 设置2个集合A和B</span><br>A = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;<br>B = &#123;<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>其jaccard相似度为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Jaccard相似度：&#x27;</span>, <span class="hljs-built_in">len</span>(A &amp; B) / <span class="hljs-built_in">len</span>(A | B))<br>Jaccard相似度： <span class="hljs-number">0.4285</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="基于hash函数的算法"><a href="#基于hash函数的算法" class="headerlink" title="基于hash函数的算法"></a>基于hash函数的算法</h3><p> 我们拥有哈希函数（有点像加密算法），它能将整数x映射到一个不同的整数，并且不会产生冲突（c 是大素数）。不同的哈希函数相当于不同的投影规则<br>$$ hash(x) &#x3D; (ax + b )% c $$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#设置某个哈希函数</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">hash</span>(<span class="hljs-params">x, a=<span class="hljs-number">1</span>, b=<span class="hljs-number">1</span>, p=<span class="hljs-number">11</span></span>):<br><br>    <span class="hljs-keyword">return</span> (a * x + b) % p<br><br><span class="hljs-comment">#对集合里的元素进行哈希，并计算最小哈希值</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">minhash</span>(<span class="hljs-params">s, <span class="hljs-built_in">hash</span></span>):<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>(<span class="hljs-built_in">hash</span>(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> s)<br></code></pre></td></tr></table></figure>
+
 
 <p>我们将某个文档A经过hash函数之后（Hash(A))，记录所得到的最小哈希值(minHash(A))。minHash(A)相当于此集合在某种观测视角下得到的结果。我们对文档B也进行计算，得到</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">Hash</span><span class="hljs-params">(A)</span></span> = <span class="hljs-selector-attr">[5, 8, 0, 3, 6]</span> <span class="hljs-built_in">minHash</span>(A) = <span class="hljs-number">0</span><br><span class="hljs-function"><span class="hljs-title">Hash</span><span class="hljs-params">(B)</span></span> = <span class="hljs-selector-attr">[0, 3, 6, 9, 1]</span>  <span class="hljs-built_in">minHash</span>(B) = <span class="hljs-number">0</span><br><br></code></pre></td></tr></table></figure>
-
+<pre><code class="hljs">Hash(A) = [5, 8, 0, 3, 6] minHash(A) = 0
+Hash(B) = [0, 3, 6, 9, 1]  minHash(B) = 0
+</code></pre>
 <p>最后，minHash(A) &#x3D; minHash(B）的概率就是Jaccard相似度。这一步我们在之后会进行解释。</p>
 <p>实际上，单次比较 minHash(A) 和 minHash(B），查看取值是否相等，这个事件的取值只有True or False。（就和抛硬币一样）只有我们经过多次hash函数操作（相当于经过了多次抛硬币），该事件发生的概率值理论上趋近于（A ∩ B）&#x2F; （ A ∪ B）。</p>
-<p>因此，使用minhash方法对Jaccard的低维估计计算方式就是：<br/>  </p>
-<pre><code class="hljs">        m 
-       
-      
-        i 
-       
-      
-        n 
-       
-      
-        H 
-       
-      
-        a 
-       
-      
-        s 
-       
-      
-        h 
-       
-      
-        ( 
-       
-      
-        A 
-       
-      
-        ) 
-       
-      
-        = 
-       
-      
-        m 
-       
-      
-        i 
-       
-      
-        n 
-       
-      
-        H 
-       
-      
-        a 
-       
-      
-        s 
-       
-      
-        h 
-       
-      
-        ( 
-       
-      
-        B 
-       
-      
-        ）的次数 
-       
-      
-      
-      
-        h 
-       
-      
-        a 
-       
-      
-        s 
-       
-      
-        h 
-       
-      
-        函数的个数 
-       
-      
-     
-    
-   
-     \frac&#123;minHash(A) = minHash(B）的次数&#125;&#123;hash函数的个数&#125; 
-    
-   
- hash函数的个数minHash(A)=minHash(B）的次数​
-</code></pre>
-<ol>
-<li>接下来我们进行多个不同的hash函数的实验，并观察其变化趋势：<br/> 如果哈希函数产生的结果高度相关（甚至相同），则这些哈希函数提供的不同视角就减少了。这意味着我们实际上并没有从多个独立的角度去观察集合的相似性，从而可能导致估计的Jaccard相似度不够准确<br/> 生成k个不相同的随机数：<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-keyword">import</span> random</span><br><span class="hljs-function">def <span class="hljs-title">pickRandomCoeffs</span><span class="hljs-params">(k)</span>:</span><br><span class="hljs-function">  randList =</span> []<br><br>  <span class="hljs-keyword">while</span> k &amp;gt; <span class="hljs-number">0</span>:<br><br>    randIndex = random.<span class="hljs-built_in">randint</span>(<span class="hljs-number">0</span>, <span class="hljs-number">99999</span>)<br>    <span class="hljs-keyword">while</span> randIndex in randList:<br>      randIndex = random.<span class="hljs-built_in">randint</span>(<span class="hljs-number">0</span>, <span class="hljs-number">99999</span>)<br>    randList.<span class="hljs-built_in">append</span>(randIndex)<br>    k = k - <span class="hljs-number">1</span><br>  <span class="hljs-keyword">return</span> randList<br><br></code></pre></td></tr></table></figure></li>
+<p>因此，使用minhash方法对Jaccard的低维估计计算方式就是：<br>$$<br>\frac{minHash(A) &#x3D; minHash(B）的次数}{hash函数的个数}<br>$$</p>
+<ol start="5">
+<li>接下来我们进行多个不同的hash函数的实验，并观察其变化趋势：<br> 如果哈希函数产生的结果高度相关（甚至相同），则这些哈希函数提供的不同视角就减少了。这意味着我们实际上并没有从多个独立的角度去观察集合的相似性，从而可能导致估计的Jaccard相似度不够准确<br>生成k个不相同的随机数：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">pickRandomCoeffs</span>(<span class="hljs-params">k</span>):<br>  randList = []<br><br>  <span class="hljs-keyword">while</span> k &gt; <span class="hljs-number">0</span>:<br><br>    randIndex = random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">99999</span>)<br>    <span class="hljs-keyword">while</span> randIndex <span class="hljs-keyword">in</span> randList:<br>      randIndex = random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">99999</span>)<br>    randList.append(randIndex)<br>    k = k - <span class="hljs-number">1</span><br>  <span class="hljs-keyword">return</span> randList<br></code></pre></td></tr></table></figure></li>
 </ol>
 <p>基于不相同的随机数，作为a和b，生成不同hash函数</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs stylus">#生成n个不同的hash函数，确保每个hash函数的a系数和b系数不同：<br><br>num_hash_funcs = <span class="hljs-number">10000</span><br>hash_funcs = <span class="hljs-selector-attr">[]</span><br><span class="hljs-selector-tag">a</span> = <span class="hljs-built_in">pickRandomCoeffs</span>(num_hash_funcs)<br><br><span class="hljs-selector-tag">b</span> = <span class="hljs-built_in">pickRandomCoeffs</span>(num_hash_funcs)<br><br><span class="hljs-keyword">for</span> <span class="hljs-selector-tag">i</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_hash_funcs):<br>    #增加不同的hash函数，确保每次生成的hash函数不同<br>    hash_funcs<span class="hljs-selector-class">.append</span>(lambda <span class="hljs-attribute">x</span>, a=a[i], b=b[i]: <span class="hljs-built_in">hash</span>(x, a, b))<br>count = <span class="hljs-number">0</span><br><br><span class="hljs-keyword">for</span> <span class="hljs-selector-tag">a</span>, <span class="hljs-selector-tag">b</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(minhash_values_A, minhash_values_B):<br>	#如果hash函数得到的minhash相同<br>    <span class="hljs-keyword">if</span> <span class="hljs-selector-tag">a</span> == <span class="hljs-selector-tag">b</span>:<br>        count += <span class="hljs-number">1</span><br><span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-string">&#x27;进行比较的哈希函数个数：&#x27;</span>, len(hash_funcs)</span></span>)<br><span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-string">&#x27;Minhash相似度：&#x27;</span>, count/ len(hash_funcs)</span></span>)<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#生成n个不同的hash函数，确保每个hash函数的a系数和b系数不同：</span><br><br>num_hash_funcs = <span class="hljs-number">10000</span><br>hash_funcs = []<br>a = pickRandomCoeffs(num_hash_funcs)<br><br>b = pickRandomCoeffs(num_hash_funcs)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_hash_funcs):<br>    <span class="hljs-comment">#增加不同的hash函数，确保每次生成的hash函数不同</span><br>    hash_funcs.append(<span class="hljs-keyword">lambda</span> x, a=a[i], b=b[i]: <span class="hljs-built_in">hash</span>(x, a, b))<br>count = <span class="hljs-number">0</span><br><br><span class="hljs-keyword">for</span> a, b <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(minhash_values_A, minhash_values_B):<br>	<span class="hljs-comment">#如果hash函数得到的minhash相同</span><br>    <span class="hljs-keyword">if</span> a == b:<br>        count += <span class="hljs-number">1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;进行比较的哈希函数个数：&#x27;</span>, <span class="hljs-built_in">len</span>(hash_funcs))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Minhash相似度：&#x27;</span>, count/ <span class="hljs-built_in">len</span>(hash_funcs))<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tap">进行比较的哈希函数个数：<span class="hljs-number"> 5 </span>Minhash相似度： 0.6<br>进行比较的哈希函数个数：<span class="hljs-number"> 100 </span>Minhash相似度： 0.38<br>进行比较的哈希函数个数：<span class="hljs-number"> 1000 </span>Minhash相似度： 0.411<br>进行比较的哈希函数个数：<span class="hljs-number"> 5000 </span>Minhash相似度： 0.4242<br><br></code></pre></td></tr></table></figure>
-
-<p>Jaccard相似度的理论值为： 0.4285。随着hash函数的个数增加，实验值逐渐逼近 0.4285</p>
-<h4 id="基于打乱排序的做法"><a href="#基于打乱排序的做法" class="headerlink" title="基于打乱排序的做法"></a>基于打乱排序的做法</h4><p>hash函数相当于一种对集合的变换方式，但实际应用时，如果我们有多个hash函数，需要对每个集合计算minhash，而哈希操作的速度也比较慢。<br/> 既然只是找到一种对集合的变换方式，再用另一种视角来观察这个集合的特征值，有没有另一种更方便的变换方法呢？</p>
+<pre><code class="hljs">进行比较的哈希函数个数： 5 Minhash相似度： 0.6
+进行比较的哈希函数个数： 100 Minhash相似度： 0.38
+进行比较的哈希函数个数： 1000 Minhash相似度： 0.411
+进行比较的哈希函数个数： 5000 Minhash相似度： 0.4242
+</code></pre>
+<p>   Jaccard相似度的理论值为： 0.4285。随着hash函数的个数增加，实验值逐渐逼近 0.4285</p>
+<h3 id="基于打乱排序的做法"><a href="#基于打乱排序的做法" class="headerlink" title="基于打乱排序的做法"></a>基于打乱排序的做法</h3><p>hash函数相当于一种对集合的变换方式，但实际应用时，如果我们有多个hash函数，需要对每个集合计算minhash，而哈希操作的速度也比较慢。<br>既然只是找到一种对集合的变换方式，再用另一种视角来观察这个集合的特征值，有没有另一种更方便的变换方法呢？</p>
 <p>我们可以使用基于打乱排序的算法。</p>
-<p>假设两个文档的内容如下：<br/> 文档A：{上山打老虎}<br/> 文档B：{老虎不在家}<br/> 将其转为one-hot编码如下：</p>
-<p>|原始下标|词|文档A|文档B<br>|——<br>|0|上|1|0<br>|1|山|1|0<br>|2|打|1|0<br>|3|老|1|1<br>|4|虎|1|1<br>|5|不|0|1<br>|6|在|0|1<br>|7|家|0|1</p>
+<p>假设两个文档的内容如下：<br>文档A：{上山打老虎}<br>文档B：{老虎不在家}<br>将其转为one-hot编码如下：</p>
+<table>
+<thead>
+<tr>
+<th>原始下标</th>
+<th>词</th>
+<th>文档A</th>
+<th>文档B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>上</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>山</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>打</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>老</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>虎</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>不</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>在</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>家</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
 <p>观测视角是：进行<strong>行变换</strong>，打乱排序，查找两个文档第一个为1的下标，判断它们是否相等</p>
 <p>打乱行的排序：</p>
-<p>|原始下标|idx|词|文档A|文档B<br>|——<br>|1|0|山|1|0<br>|7|1|家|0|1<br>|2|2|打|1|0<br>|3|3|老|1|1<br>|5|4|不|0|1<br>|6|5|在|0|1<br>|4|6|虎|1|1<br>|0|7|上|1|0</p>
-<p>文档A变成{1,0,1,1,0,0,1,1}，第一个为1的jdx为0，（对应’山‘）<br/> 文档B变成{0,1,0,1,1,1,1,0}，第一个为1的idx为1，（对应’家’）<br/> 0 ！&#x3D; 1，表示在这次打乱中，两个文档第一个为1的下标不相等。<br/> 我们进行多次这样的打乱排序，并统计他们相等的次数，除以总次数，得到的就是minhash对jaccard相似度的估计。</p>
+<table>
+<thead>
+<tr>
+<th>原始下标</th>
+<th>idx</th>
+<th>词</th>
+<th>文档A</th>
+<th>文档B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>山</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>家</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>打</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>老</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>4</td>
+<td>不</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td>在</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>6</td>
+<td>虎</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>7</td>
+<td>上</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>文档A变成{1,0,1,1,0,0,1,1}，第一个为1的jdx为0，（对应’山‘）<br>文档B变成{0,1,0,1,1,1,1,0}，第一个为1的idx为1，（对应’家’）<br>0 ！&#x3D; 1，表示在这次打乱中，两个文档第一个为1的下标不相等。<br>我们进行多次这样的打乱排序，并统计他们相等的次数，除以总次数，得到的就是minhash对jaccard相似度的估计。</p>
 <p>具体代码如下：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">import</span> random<br><br><span class="hljs-comment"># 设置2个集合A和B</span><br><span class="hljs-attribute">A</span> =<span class="hljs-meta"> [0,0,1,1,1]</span><br><span class="hljs-attribute">B</span> =<span class="hljs-meta"> [1,0,1,1,0]</span><br><span class="hljs-attribute">idx</span> =<span class="hljs-meta"> [0,1,2,3,4]</span><br><span class="hljs-attribute">cnt</span> = <span class="hljs-number">0</span><br><br><span class="hljs-comment"># 计算Jaccard相似度</span><br><br><span class="hljs-attribute">print</span>(<span class="hljs-string">&quot;Jaccard相似度理论值&quot;</span>,sum([A[i] &amp;amp; B[i] for i in range(<span class="hljs-number">5</span>)]) / sum([A[i] | B[i] for i in range(<span class="hljs-number">5</span>)]))<br><br><span class="hljs-attribute">for</span> i in range(<span class="hljs-number">1000</span>):<br><br>    <span class="hljs-attribute">random</span>.shuffle(idx)<br>    <span class="hljs-attribute">newA</span> =<span class="hljs-meta"> [A[i] for i in idx]</span><br>    <span class="hljs-attribute">newB</span> =<span class="hljs-meta"> [B[i] for i in idx]</span><br><br>    <span class="hljs-comment"># 第一个为1的位置</span><br>    <span class="hljs-attribute">idxA</span> = newA.index(<span class="hljs-number">1</span>)<br>    <span class="hljs-attribute">idxB</span> = newB.index(<span class="hljs-number">1</span>)<br>    <span class="hljs-attribute">if</span> idxA == idxB:<br><br>        <span class="hljs-attribute">cnt</span> += <span class="hljs-number">1</span><br><br><br><span class="hljs-attribute">print</span>(<span class="hljs-string">&quot;Jaccard相似度实验值&quot;</span>,cnt / <span class="hljs-number">1000</span>)<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br><br><span class="hljs-comment"># 设置2个集合A和B</span><br>A = [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br>B = [<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]<br>idx = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]<br>cnt = <span class="hljs-number">0</span><br><br><span class="hljs-comment"># 计算Jaccard相似度</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Jaccard相似度理论值&quot;</span>,<span class="hljs-built_in">sum</span>([A[i] &amp; B[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>)]) / <span class="hljs-built_in">sum</span>([A[i] | B[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>)]))<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1000</span>):<br><br>    random.shuffle(idx)<br>    newA = [A[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> idx]<br>    newB = [B[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> idx]<br><br>    <span class="hljs-comment"># 第一个为1的位置</span><br>    idxA = newA.index(<span class="hljs-number">1</span>)<br>    idxB = newB.index(<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">if</span> idxA == idxB:<br><br>        cnt += <span class="hljs-number">1</span><br><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Jaccard相似度实验值&quot;</span>,cnt / <span class="hljs-number">1000</span>)<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Jaccard</span>相似度理论值 <span class="hljs-number">0</span>.<span class="hljs-number">5</span><br><span class="hljs-attribute">Jaccard</span>相似度实验值 <span class="hljs-number">0</span>.<span class="hljs-number">497</span><br><br></code></pre></td></tr></table></figure>
-
-<p>在使用的时候，也可以首先计算一次hash值，得到hash(X_i)，然后对其进行线性变换，这样就省去了多次计算hash值的操作。<br/>  </p>
-<pre><code class="hljs">      p 
-     
-    
-      e 
-     
-    
-      r 
-     
-    
-      ( 
-     
-     
-     
-       x 
-      
-     
-       i 
-      
-     
-    
-      ) 
-     
-    
-      = 
-     
-    
-      ( 
-     
-    
-      a 
-     
-    
-      ⋅ 
-     
-     
-     
-       h 
-      
-     
-       a 
-      
-     
-       s 
-      
-     
-       h 
-      
-     
-       ( 
-      
-      
-      
-        x 
-       
-      
-        i 
-       
-      
-     
-       ) 
-      
-     
-    
-      + 
-     
-    
-      b 
-     
-    
-      ) 
-     
-    
-      % 
-     
-    
-      c 
-     
-    
-   
-     per(x_i) = (a\cdot&#123;hash(x_i)&#125; + b)\% c 
-    
-   
- per(xi​)=(a⋅hash(xi​)+b)%c  
-  
-   
-    
-    
-      m 
-     
-    
-      i 
-     
-    
-      n 
-     
-    
-      h 
-     
-    
-      a 
-     
-    
-      s 
-     
-    
-      h 
-     
-    
-      ( 
-     
-    
-      x 
-     
-    
-      ) 
-     
-    
-      = 
-     
-    
-      m 
-     
-    
-      i 
-     
-    
-      n 
-     
-    
-      ( 
-     
-    
-      p 
-     
-    
-      e 
-     
-    
-      r 
-     
-    
-      ( 
-     
-     
-     
-       x 
-      
-     
-       i 
-      
-     
-    
-      ) 
-     
-    
-      ) 
-     
-    
-   
-     minhash(x) = min(per(x_i)) 
-    
-   
- minhash(x)=min(per(xi​))
+<pre><code class="hljs">Jaccard相似度理论值 0.5
+Jaccard相似度实验值 0.497
 </code></pre>
-<h3 id="为什么minhash有效"><a href="#为什么minhash有效" class="headerlink" title="为什么minhash有效?"></a>为什么minhash有效?</h3><p>case1:</p>
+<p>在使用的时候，也可以首先计算一次hash值，得到hash(X_i)，然后对其进行线性变换，这样就省去了多次计算hash值的操作。<br>$$<br>per(x_i) &#x3D; (a\cdot{hash(x_i)} + b)% c<br>$$ $$<br>minhash(x) &#x3D; min(per(x_i))<br>$$</p>
+<h2 id="为什么minhash有效"><a href="#为什么minhash有效" class="headerlink" title="为什么minhash有效?"></a>为什么minhash有效?</h2><p>case1:</p>
 <blockquote>
-</blockquote>
 <p>”横看成岭侧成峰，远近高低各不同“ ——苏轼《题西林壁》</p>
+</blockquote>
 <p>minhash相当于在不同视角（投影角度）下观察两个集合的特征点是否相同，如果他们在多次观察下都具有相同的特征点，那么他们很有可能是分布相似的集合。</p>
 <p>我们想象现在存在两座山，如果A山和B山从东西南北四个角度观察，他们的最高点高度相同，次高点、次次高点的高度都相同，那么这两座山很可能就是形状一样的山。</p>
 <p>minhash在实际操作上很容易，但为什么minHash(A) &#x3D; minHash(B）的概率就是Jaccard相似度呢？</p>
-<p>case2:<br/>  </p>
-<pre><code class="hljs">      P 
-     
-    
-      r 
-     
-    
-      ( 
-     
-    
-      m 
-     
-    
-      i 
-     
-    
-      n 
-     
-    
-      H 
-     
-    
-      a 
-     
-    
-      s 
-     
-    
-      h 
-     
-    
-      ( 
-     
-    
-      A 
-     
-    
-      ) 
-     
-    
-      = 
-     
-    
-      m 
-     
-    
-      i 
-     
-    
-      n 
-     
-    
-      H 
-     
-    
-      a 
-     
-    
-      s 
-     
-    
-      h 
-     
-    
-      ( 
-     
-    
-      B 
-     
-    
-      ) 
-     
-    
-      ) 
-     
-    
-      = 
-     
-     
-      
-      
-        A 
-       
-      
-        ∩ 
-       
-      
-        B 
-       
-      
-      
-      
-        A 
-       
-      
-        ∪ 
-       
-      
-        B 
-       
-      
-     
-    
-      = 
-     
-    
-      J 
-     
-    
-      a 
-     
-    
-      c 
-     
-    
-      c 
-     
-    
-      a 
-     
-    
-      r 
-     
-    
-      d 
-     
-    
-      ( 
-     
-    
-      A 
-     
-    
-      , 
-     
-    
-      B 
-     
-    
-      ) 
-     
-    
-   
-     Pr(minHash(A) = minHash(B)) = \frac&#123;A \cap B &#125;&#123;A \cup B &#125; = Jaccard(A,B) 
-    
-   
- Pr(minHash(A)=minHash(B))=A∪BA∩B​=Jaccard(A,B)
-</code></pre>
+<p>case2:<br>$$<br>Pr(minHash(A) &#x3D; minHash(B)) &#x3D; \frac{A \cap B }{A \cup B } &#x3D; Jaccard(A,B)<br>$$</p>
 <p>为了方便理解，我们这里还是举一个直观的例子：</p>
 <p>有一个班级，里面有30个小朋友，里面的小朋友不是会唱歌，就是会跳舞，还有的既会唱歌也会跳舞。</p>
-<p>此时集合 </p>
-<pre><code class="hljs">     A 
-    
-   
-     = 
-    
-   
-     &#123; 
-    
-   
-     会唱歌的小朋友 
-    
-   
-     &#125; 
-    
-   
-  
-    A = \&#123;会唱歌的小朋友\&#125; 
-   
-  
-A=&#123;会唱歌的小朋友&#125;， 
- 
-  
-   
-   
-     B 
-    
-   
-     = 
-    
-   
-     &#123; 
-    
-   
-     会跳舞的小朋友 
-    
-   
-     &#125; 
-    
-   
-  
-    B = \&#123;会跳舞的小朋友\&#125; 
-   
-  
-B=&#123;会跳舞的小朋友&#125;， 
- 
-  
-   
-   
-     A 
-    
-   
-     ∪ 
-    
-   
-     B 
-    
-   
-  
-    A \cup B 
-   
-  
-A∪B 构成了全集  
- 
-  
-   
-   
-     D 
-    
-   
-  
-    D 
-   
-  
-D
-</code></pre>
+<p>此时集合$A &#x3D; {会唱歌的小朋友}$，$B &#x3D; {会跳舞的小朋友}$，$A \cup B$ 构成了全集 $D$</p>
 <p>我们寻找一种相同的投影维度（一种哈希函数）将小朋友们排序，并选出顺序第一的人。例如各自选出集合A和B中身高最高的小朋友，他们是同一个小朋友的概率，等价于在全班所有小朋友中都选出最高的小朋友，他既会唱歌也会跳舞的概率。</p>
-<p>在这个例子中，身高就是一种将小朋友们向一个方向投影的哈希函数，同理还可以使用体重、力气、吃零食速度、谁哭得最响等等多个维度，最终我们多次投影得到计算的概率值就可以用来近似  </p>
-<pre><code class="hljs">       A 
-      
-     
-       ∩ 
-      
-     
-       B 
-      
-     
-     
-     
-       A 
-      
-     
-       ∪ 
-      
-     
-       B 
-      
-     
-    
-   
-  
-    \frac&#123;A \cap B &#125;&#123;A \cup B &#125; 
-   
-  
-A∪BA∩B​。
-</code></pre>
-<p>转化成数学公式，就是: </p>
-<pre><code class="hljs">     P 
-    
-   
-     r 
-    
-   
-     ( 
-    
-   
-     某一种投影 
-    
-   
-     ( 
-    
-   
-     A 
-    
-   
-     ) 
-    
-   
-     = 
-    
-   
-     某一种投影 
-    
-   
-     ( 
-    
-   
-     B 
-    
-   
-     ) 
-    
-   
-     ) 
-    
-   
-     = 
-    
-    
-     
-     
-       A 
-      
-     
-       ∩ 
-      
-     
-       B 
-      
-     
-     
-     
-       A 
-      
-     
-       ∪ 
-      
-     
-       B 
-      
-     
-    
-   
-  
-    Pr(某一种投影(A) = 某一种投影(B)) = \frac&#123;A \cap B &#125;&#123;A \cup B &#125; 
-   
-  
-Pr(某一种投影(A)=某一种投影(B))=A∪BA∩B​
-</code></pre>
+<p>在这个例子中，身高就是一种将小朋友们向一个方向投影的哈希函数，同理还可以使用体重、力气、吃零食速度、谁哭得最响等等多个维度，最终我们多次投影得到计算的概率值就可以用来近似 $\frac{A \cap B }{A \cup B }$。</p>
+<p>转化成数学公式，就是:$Pr(某一种投影(A) &#x3D; 某一种投影(B)) &#x3D; \frac{A \cap B }{A \cup B }$</p>
 <p>当多次投影都能得到相同的值时，我们就可以认为这两个集合很相似啦！</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mergen/p/5276501.html">使用MinHash算法计算两个集合的相似度 - unrealwalker - 博客园 (cnblogs.com)</a><br><a target="_blank" rel="noopener" href="https://mccormickml.com/2015/06/12/minhash-tutorial-with-python-code/">MinHash 教程与 Python 代码 · 克里斯·麦科米克 — MinHash Tutorial with Python Code · Chris McCormick (mccormickml.com)</a><br><a target="_blank" rel="noopener" href="https://ansvver.github.io/lsh_minhash.html">ansvver | 局部敏感哈希 - MinHash</a></p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mergen/p/5276501.html">使用MinHash算法计算两个集合的相似度 - unrealwalker - 博客园 (cnblogs.com)</a><br/> <a target="_blank" rel="noopener" href="https://mccormickml.com/2015/06/12/minhash-tutorial-with-python-code/">MinHash 教程与 Python 代码 · 克里斯·麦科米克 — MinHash Tutorial with Python Code · Chris McCormick (mccormickml.com)</a><br/> <a target="_blank" rel="noopener" href="https://ansvver.github.io/lsh_minhash.html">ansvver | 局部敏感哈希 - MinHash</a></p>
 
                 
               </div>
@@ -1197,6 +488,15 @@ Pr(某一种投影(A)=某一种投影(B))=A∪BA∩B​
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%87%E6%9C%AC%E5%8E%BB%E9%87%8D/" class="print-no-link">#文本去重</a>
+      
+        <a href="/tags/Minhash/" class="print-no-link">#Minhash</a>
+      
+    </div>
+  
 </div>
 
 
@@ -1205,7 +505,7 @@ Pr(某一种投影(A)=某一种投影(B))=A∪BA∩B​
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【文本去重】通俗易懂理解Minhash算法</div>
+      <div>Minhash算法直观理解</div>
       <div>https://abigail61.github.io/2024/11/23/原创--  【文本去重】通俗易懂理解Minhash算法/</div>
     </div>
     <div class="license-meta">
