@@ -231,6 +231,88 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2025/03/29/vllm%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1/" target="_self">
+          vllm推理服务
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/29/vllm%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1/" target="_self">
+        <div>
+          vllm推理服务写这篇博客的原因是我经常用的是vllm离线批量推理，不用vllm的推理服务。以此来记录下启动vllm推理服务的步骤：  使用vllm在我们指定的主机和端口上启动一个API服务器，负责用我指定的模型来提供推理服务。1python -m vllm.entrypoints.openai.api_server --model /opt/data/private/models/deepsee
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-29 13:49" pubdate>
+              2025-03-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vllm/">#vllm</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%AC%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90/" target="_self">
+          服务器公私钥生成
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%AC%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90/" target="_self">
+        <div>
+          连接服务器连了好多次，每次都忘记具体操作步骤。现在有一台新的服务器，记录一下。 服务器公私钥生成操作步骤记录 对于windows系统，打开powershell 输入命令：ssh-keygen -t rsa -C “&#x79;&#x6f;&#x75;&#114;&#95;&#101;&#x6d;&#x61;&#105;&#x6c;&#64;&#x65;&#120;&#97;&#x6d;&#x70;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-25 10:46" pubdate>
+              2025-03-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
+            
+              <a href="/tags/%E5%85%AC%E7%A7%81%E9%92%A5/">#公私钥</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2025/03/23/lora%E5%8E%9F%E7%90%86%E5%92%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" target="_self">
           lora原理和代码实现
         </a>
@@ -239,7 +321,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/03/23/lora%E5%8E%9F%E7%90%86%E5%92%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" target="_self">
         <div>
-          本篇文章结合代码来介绍大模型高效微调技术LoRA，并给出简单的代码实现。 什么是LoRALoRA是一种高效的参数微调技术，引入可训练的低秩分解矩阵来调整模型参数，来适应特定的任务和领域 为什么需要LoRA ft整个大模型训练成本过高 大模型中参数量巨大，可能是冗余的，参数有更小的内在维度  LoRA是如何实现的LoRA的基本原理在LoRA的实现中，我们引入了两个低秩矩阵A和B。在训练过程中，我们冻
+          本篇文章结合代码来介绍大模型高效微调技术LoRA，并给出简单的代码实现。 什么是LoRALoRA是一种高效的参数微调技术，引入可训练的低秩分解矩阵来调整模型参数，来适应特定的任务和领域 为什么需要LoRA ft整个大模型训练成本过高 大模型中参数量巨大，可能是冗余的，参数有更小的内在维度  LoRA是如何实现的下面本节将从基本原理与代码实现两个角度介绍LoRA LoRA的基本原理在LoRA的实现中
         </div>
       </a>
 
@@ -262,48 +344,6 @@
               <a href="/tags/%E4%BB%A3%E7%A0%81/">#代码</a>
             
               <a href="/tags/%E7%AC%94%E8%AE%B0/">#笔记</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/03/23/%E3%80%90%E5%88%B7%E9%A2%98%E3%80%91%E6%89%8B%E5%A5%97/" target="_self">
-          【刷题】成对手套
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/23/%E3%80%90%E5%88%B7%E9%A2%98%E3%80%91%E6%89%8B%E5%A5%97/" target="_self">
-        <div>
-          
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-23 14:00" pubdate>
-              2025-03-23
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">#模型训练</a>
-            
-              <a href="/tags/%E6%98%BE%E5%AD%98%E4%BC%98%E5%8C%96/">#显存优化</a>
             
           </div>
         
@@ -555,50 +595,6 @@
           </div>
         
         
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/02/09/draft/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%88%B7%E9%A2%98/" target="_self">
-          动态规划刷题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/02/09/draft/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%88%B7%E9%A2%98/" target="_self">
-        <div>
-          本章结合代码随想录进行动态规划刷题总结 动态规划五部曲 确定dp数组（dp table）以及下标的含义 确定递推公式 dp数组如何初始化 确定遍历顺序 举例推导dp数组  解不出题的灵魂三问 这道题目我举例推导状态转移公式了么？ 我打印dp数组的日志了么？ 打印出来了dp数组和我想的一样么？  开始炒股买卖股票的最佳时机121. 买卖股票的最佳时机题目描述给定一个数组 prices ，它的第 i
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-02-09 18:27" pubdate>
-              2025-02-09
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E4%BB%A3%E7%A0%81/">#代码</a>
-            
-              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a>
-            
-              <a href="/tags/%E5%8A%9B%E6%89%A3/">#力扣</a>
-            
-          </div>
         
       </div>
     </article>

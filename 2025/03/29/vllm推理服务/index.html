@@ -19,27 +19,22 @@
   <meta name="author" content="Yajing Luo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本篇文章结合代码来介绍大模型高效微调技术LoRA，并给出简单的代码实现。 什么是LoRALoRA是一种高效的参数微调技术，引入可训练的低秩分解矩阵来调整模型参数，来适应特定的任务和领域 为什么需要LoRA ft整个大模型训练成本过高 大模型中参数量巨大，可能是冗余的，参数有更小的内在维度  LoRA是如何实现的下面本节将从基本原理与代码实现两个角度介绍LoRA LoRA的基本原理在LoRA的实现中">
+    <meta name="description" content="vllm推理服务写这篇博客的原因是我经常用的是vllm离线批量推理，不用vllm的推理服务。以此来记录下启动vllm推理服务的步骤：  使用vllm在我们指定的主机和端口上启动一个API服务器，负责用我指定的模型来提供推理服务。1python -m vllm.entrypoints.openai.api_server --model &#x2F;opt&#x2F;data&#x2F;private&#x2F;models&#x2F;deepsee">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lora原理和代码实现">
-<meta property="og:url" content="https://abigail61.github.io/2025/03/23/lora%E5%8E%9F%E7%90%86%E5%92%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:title" content="vllm推理服务">
+<meta property="og:url" content="https://abigail61.github.io/2025/03/29/vllm%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Abigail&#39;s blog">
-<meta property="og:description" content="本篇文章结合代码来介绍大模型高效微调技术LoRA，并给出简单的代码实现。 什么是LoRALoRA是一种高效的参数微调技术，引入可训练的低秩分解矩阵来调整模型参数，来适应特定的任务和领域 为什么需要LoRA ft整个大模型训练成本过高 大模型中参数量巨大，可能是冗余的，参数有更小的内在维度  LoRA是如何实现的下面本节将从基本原理与代码实现两个角度介绍LoRA LoRA的基本原理在LoRA的实现中">
+<meta property="og:description" content="vllm推理服务写这篇博客的原因是我经常用的是vllm离线批量推理，不用vllm的推理服务。以此来记录下启动vllm推理服务的步骤：  使用vllm在我们指定的主机和端口上启动一个API服务器，负责用我指定的模型来提供推理服务。1python -m vllm.entrypoints.openai.api_server --model &#x2F;opt&#x2F;data&#x2F;private&#x2F;models&#x2F;deepsee">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202503241404719.png">
-<meta property="og:image" content="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202503241404721.png">
-<meta property="article:published_time" content="2025-03-23T14:09:40.966Z">
-<meta property="article:modified_time" content="2025-03-24T14:44:34.276Z">
+<meta property="article:published_time" content="2025-03-29T05:49:00.195Z">
+<meta property="article:modified_time" content="2025-03-29T05:50:13.147Z">
 <meta property="article:author" content="Yajing Luo">
-<meta property="article:tag" content="Lora">
-<meta property="article:tag" content="代码">
-<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="vllm">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202503241404719.png">
   
   
   
-  <title>lora原理和代码实现 - Abigail&#39;s blog</title>
+  <title>vllm推理服务 - Abigail&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -209,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="lora原理和代码实现"></span>
+            <span id="subtitle" data-typed-text="vllm推理服务"></span>
           
         </div>
 
@@ -220,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-23 22:09" pubdate>
-          2025年3月23日 晚上
+        <time datetime="2025-03-29 13:49" pubdate>
+          2025年3月29日 下午
         </time>
       </span>
     
@@ -233,7 +228,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          819 字
+          929 字
         
       </span>
     
@@ -245,7 +240,7 @@
         
         
           <!-- compatible with older versions-->
-          7 分钟
+          8 分钟
         
       </span>
     
@@ -282,44 +277,29 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">lora原理和代码实现</h1>
+            <h1 id="seo-header">vllm推理服务</h1>
             
             
               <div class="markdown-body">
                 
-                <p>本篇文章结合代码来介绍大模型高效微调技术LoRA，并给出简单的代码实现。</p>
-<h1 id="什么是LoRA"><a href="#什么是LoRA" class="headerlink" title="什么是LoRA"></a>什么是LoRA</h1><p>LoRA是一种高效的参数微调技术，引入可训练的低秩分解矩阵来调整模型参数，来适应特定的任务和领域</p>
-<h1 id="为什么需要LoRA"><a href="#为什么需要LoRA" class="headerlink" title="为什么需要LoRA"></a>为什么需要LoRA</h1><ol>
-<li>ft整个大模型训练成本过高</li>
-<li>大模型中参数量巨大，可能是冗余的，参数有更小的内在维度</li>
+                <h1 id="vllm推理服务"><a href="#vllm推理服务" class="headerlink" title="vllm推理服务"></a>vllm推理服务</h1><p>写这篇博客的原因是我经常用的是vllm离线批量推理，不用vllm的推理服务。以此来记录下启动vllm推理服务的步骤：</p>
+<ol>
+<li>使用vllm在我们指定的主机和端口上启动一个API服务器，负责用我指定的模型来提供推理服务。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python -m vllm.entrypoints.openai.api_server --model /opt/data/private/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B/ --host 0.0.0.0 --port 8030 --gpu-memory-utilization 0.7 --max-model-len 8192 --tensor-parallel-size 2 --use-v2-block-manage --max-num-seqs 2 --disable-frontend-multiprocessing --enforce-eage<br></code></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="LoRA是如何实现的"><a href="#LoRA是如何实现的" class="headerlink" title="LoRA是如何实现的"></a>LoRA是如何实现的</h1><p>下面本节将从基本原理与代码实现两个角度介绍LoRA</p>
-<h2 id="LoRA的基本原理"><a href="#LoRA的基本原理" class="headerlink" title="LoRA的基本原理"></a>LoRA的基本原理</h2><p>在LoRA的实现中，我们引入了两个低秩矩阵A和B。在训练过程中，我们冻结了预训练模型的参数，仅对降维矩阵A和升维矩阵B进行训练。最终的输出可以表示为h &#x3D; Wx + BAx。</p>
-<p>其中，A矩阵通过高斯随机初始化，而B用0初始化，保证了训练初期△W仍然为0，使得模型优化初始点和原始大模型保持一致。</p>
-<p><img src="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202503241404719.png" srcset="/img/loading.gif" lazyload alt="picture 4">  </p>
-<p>通过这种方式，我们可以显著减少微调所需的参数量。假设原始维度d &#x3D; 1k，秩为r &#x3D; 2 ， r &lt;&lt; d</p>
-<p>全参微调： △W &#x3D; d * d &#x3D; 100w<br>lora微调： △W &#x3D; d * r + r * d &#x3D; 4K</p>
-<p>微调参数量节省了 100w &#x2F; 4k &#x3D; 250倍。</p>
-<p>在训练完成后，我们可以将A * B^T加到W上，这样在推理时不会引入额外的延迟，从而实现高效的模型推理。</p>
-<h2 id="LoRA在Transformer中的应用"><a href="#LoRA在Transformer中的应用" class="headerlink" title="LoRA在Transformer中的应用"></a>LoRA在Transformer中的应用</h2><p>本质上可以将这种方法应用到任何一个参数矩阵中，来减少可训练的参数量。</p>
-<p>在Transformer的自注意力模块中，就有权重矩阵Wq, Wk, Wv, Wo，在MLP模块中，就有升维矩阵up_proj和降维矩阵down_proj。</p>
-<p><img src="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202503241404721.png" srcset="/img/loading.gif" lazyload alt="picture 5">  </p>
-<h2 id="LoRA代码实现"><a href="#LoRA代码实现" class="headerlink" title="LoRA代码实现"></a>LoRA代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br><span class="hljs-keyword">import</span> math<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">LinearLoRA</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,</span><br><span class="hljs-params">        in_features,</span><br><span class="hljs-params">        out_features,</span><br><span class="hljs-params">        rank,</span><br><span class="hljs-params">        alpha</span>):<br><br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.in_features = in_features<br>        <span class="hljs-variable language_">self</span>.out_features = out_features<br>        <span class="hljs-variable language_">self</span>.rank = rank<br>        <span class="hljs-variable language_">self</span>.alpha = alpha<br><br>        <span class="hljs-comment"># 预训练的权重矩阵</span><br>        <span class="hljs-variable language_">self</span>.pre_trained_weight = nn.Linear(in_features, out_features)<br>        <span class="hljs-comment"># 冻结，设置为不可训练</span><br>        <span class="hljs-variable language_">self</span>.pre_trained_weight.weight.requires_grad = <span class="hljs-literal">False</span><br>        <span class="hljs-variable language_">self</span>.pre_trained_weight.bias.requires_grad = <span class="hljs-literal">False</span><br><br>        <span class="hljs-comment"># 低秩矩阵A和B</span><br>        <span class="hljs-variable language_">self</span>.lora_A = nn.Parameter(torch.zeros(in_features, rank))<br>        <span class="hljs-comment"># 对A矩阵进行高斯初始化</span><br>        nn.init.kaiming_normal_(<span class="hljs-variable language_">self</span>.lora_A, a = <span class="hljs-number">0.01</span>)<br><br>        <span class="hljs-variable language_">self</span>.lora_B = nn.Parameter(torch.zeros(rank, out_features))<br>        <span class="hljs-variable language_">self</span>.scale = <span class="hljs-variable language_">self</span>.alpha / <span class="hljs-variable language_">self</span>.rank<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, X</span>):<br>        <span class="hljs-comment"># X shape :[batch_size, seqence_len, in_Feature]</span><br><br>        <span class="hljs-comment"># part 1</span><br>        part1 = <span class="hljs-variable language_">self</span>.pre_trained_weight(X)<br><br>        <span class="hljs-comment"># part 2</span><br>        part2 = X @ <span class="hljs-variable language_">self</span>.lora_A @ <span class="hljs-variable language_">self</span>.lora_B<br>        part2 = <span class="hljs-variable language_">self</span>.scale * part2<br><br>        output = part1 + part2<br>        <span class="hljs-keyword">return</span> output<br></code></pre></td></tr></table></figure>
-
-<p>运行一下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-comment"># 测试代码</span><br>in_features = <span class="hljs-number">64</span><br>out_features = <span class="hljs-number">64</span><br>rank = <span class="hljs-number">4</span><br>alpha = <span class="hljs-number">8</span><br><br>batch_size = <span class="hljs-number">2</span><br>seq_len = <span class="hljs-number">8</span><br><br>X = torch.randn(batch_size, seq_len, in_features)<br><br>lora_layer = LinearLoRA(in_features= in_features, out_features= out_features, rank= rank, alpha= alpha)<br><br>output = lora_layer(X)<br><span class="hljs-built_in">print</span>(output.shape)<br></code></pre></td></tr></table></figure>
-
-<h1 id="LoRA与其他高效微调技术的对比"><a href="#LoRA与其他高效微调技术的对比" class="headerlink" title="LoRA与其他高效微调技术的对比"></a>LoRA与其他高效微调技术的对比</h1><ol>
-<li><p>Adapter<br>在预训练模型中插入小的可训练的适配器模块（比如两层前馈网络），在训练时原始模型参数冻结，而adapter模块被训练。<br>缺点：插入了额外模块增加层数，影响推理延迟</p>
-</li>
-<li><p>Prefix Tuning<br>在输入前添加一些可训练的“前缀”向量，前缀向量可以看做是特定任务的Prompt，用于引导模型进行输出。<br>缺点：比较难训练，留给前缀的序列长度挤压了输入的序列长度，效果不如ft</p>
-</li>
-<li><p>P-tuning<br>前缀可以是通过神经网络生成的连续提示向量，分布在句子的不同位置。</p>
-</li>
+<p>名词扫盲：</p>
+<ol>
+<li>启动API服务器：一个可以处理请求的程序。有人丢一个问题进来，服务会算出一个答案，把答案传回去。这里的服务就是我们启动的vllm的程序</li>
+<li>设定模型路径：&#x2F;opt&#x2F;data&#x2F;parivate&#x2F;models&#x2F;deepseek-ai&#x2F;DeepSeek-R1-Distill-Qwen-32B&#x2F;</li>
+<li>设置网络接口：–host 0.0.0.0表示可以这个服务可以接受任何外部请求，0.0.0.0不是一个真实可访问的地址，而是通配符，表示可以接受来自任意IP的请求。包括来自本机访问的（比如IP为localhost或者127.0.0.1)，也包括别人通过局域网来访问这台机器的请求（IP为他实际的局域网IP，比如192.168.1.100)。</li>
+<li>设置端口号:8030。一台电脑上可以运行很多个服务，这个服务所在的房间号就是8030，避免迷路。</li>
+<li>我们需要“发送一个请求”给这个服务器，让他运行模型，返回答案。这里有不同的工具可以来完成</li>
+<li>用curl这种命令行工具来发送网络请求<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl http://localhost:8030/v1/chat/completions \<br>  -H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> \<br>  -d <span class="hljs-string">&#x27;&#123;</span><br><span class="hljs-string">    &quot;model&quot;: &quot;/opt/data/private/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B/&quot;,</span><br><span class="hljs-string">    &quot;messages&quot;: [&#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;你好，介绍一下你自己&quot;&#125;],</span><br><span class="hljs-string">    &quot;temperature&quot;: 0.7</span><br><span class="hljs-string">  &#125;&#x27;</span><br>    curl：这是发送请求的工具。<br>    http://localhost:8030/v1/chat/completions：这是你刚才启动的 API 服务器的地址，表示我们要访问它的 Chat Completions 接口。<br>    -H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span>：告诉服务器我们要发的是 JSON 格式的数据。<br>    -d <span class="hljs-string">&#x27;&#123; ... &#125;&#x27;</span>：这是我们要发送的 JSON 内容。意思是：用这个模型（名字需要是模型路径），我作为用户输入了一句话“你好，介绍一下你自己”，请你回复一下。<br></code></pre></td></tr></table></figure></li>
+<li>用Python程序来发送网络请求<br>如果你不习惯用 curl，推荐你直接用 Python 来写一个脚本：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> openai <span class="hljs-keyword">import</span> OpenAI<br><br>client = OpenAI(api_key=<span class="hljs-string">&quot;empty&quot;</span>, base_url=<span class="hljs-string">&quot;http://localhost:8030/v1&quot;</span>)<br><br>response = client.chat.completions.create(<br>    model=<span class="hljs-string">&quot;/opt/data/private/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B/&quot;</span>,<br>    messages=[<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Hello&quot;</span>&#125;,<br>    ],<br>    stream=<span class="hljs-literal">False</span><br>)<br><br><span class="hljs-built_in">print</span>(response.choices[<span class="hljs-number">0</span>].message.content)<br></code></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://bruceyuan.com/hands-on-code/hands-on-lora.html#pytorch-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">LoRA 原理和 PyTorch 代码实现</a></p>
-</blockquote>
+<pre><code class="hljs">忽然发现，这个和官方API的调用方式很类似诶，对比一下：
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Please install OpenAI SDK first: `pip3 install openai`</span><br><br><span class="hljs-keyword">from</span> openai <span class="hljs-keyword">import</span> OpenAI<br><br>client = OpenAI(api_key=<span class="hljs-string">&quot;&lt;DeepSeek API Key&gt;&quot;</span>, base_url=<span class="hljs-string">&quot;https://api.deepseek.com&quot;</span>)<br><br>response = client.chat.completions.create(<br>    model=<span class="hljs-string">&quot;deepseek-chat&quot;</span>,<br>    messages=[<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;You are a helpful assistant&quot;</span>&#125;,<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Hello&quot;</span>&#125;,<br>    ],<br>    stream=<span class="hljs-literal">False</span><br>)<br><br><span class="hljs-built_in">print</span>(response.choices[<span class="hljs-number">0</span>].message.content)<br></code></pre></td></tr></table></figure>
+<p>  这其实是vLLM特意做的兼容设计！也就是说——<br>你在本地部署的vLLM模型服务在接口上“伪装”成了OpenAI提供的API服务。只要设计号base_url和api_key，就能无缝调用本地模型！<br>通过本文的介绍，你已经掌握了如何使用 vLLM 在指定主机和端口上启动一个推理 API 服务，并通过 curl 或 Python 脚本与其交互。这个流程可以作为部署本地大模型服务的基础模板。万一哪天忘了，也可以快速查看~</p>
 
                 
               </div>
@@ -332,11 +312,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Lora/" class="print-no-link">#Lora</a>
-      
-        <a href="/tags/%E4%BB%A3%E7%A0%81/" class="print-no-link">#代码</a>
-      
-        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+        <a href="/tags/vllm/" class="print-no-link">#vllm</a>
       
     </div>
   
@@ -348,8 +324,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>lora原理和代码实现</div>
-      <div>https://abigail61.github.io/2025/03/23/lora原理和代码实现/</div>
+      <div>vllm推理服务</div>
+      <div>https://abigail61.github.io/2025/03/29/vllm推理服务/</div>
     </div>
     <div class="license-meta">
       
@@ -361,7 +337,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月23日</div>
+          <div>2025年3月29日</div>
         </div>
       
       
@@ -393,18 +369,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%AC%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90/" title="服务器公私钥生成">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">服务器公私钥生成</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/21/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="刷题速记">
-                        <span class="hidden-mobile">刷题速记</span>
+                      <a href="/2025/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%AC%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90/" title="服务器公私钥生成">
+                        <span class="hidden-mobile">服务器公私钥生成</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
