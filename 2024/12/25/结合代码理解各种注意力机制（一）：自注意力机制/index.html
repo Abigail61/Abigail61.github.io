@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202501260009338.png">
 <meta property="og:image" content="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202501260009366.png">
 <meta property="article:published_time" content="2024-12-25T06:55:20.679Z">
-<meta property="article:modified_time" content="2025-01-30T09:38:05.678Z">
+<meta property="article:modified_time" content="2025-04-03T11:57:33.926Z">
 <meta property="article:author" content="Yajing Luo">
 <meta property="article:tag" content="代码">
 <meta property="article:tag" content="transformer">
@@ -238,7 +238,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.6k 字
+          2k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
           <!-- compatible with older versions-->
-          14 分钟
+          17 分钟
         
       </span>
     
@@ -304,8 +304,10 @@
 
 <p>然后对句子进行分词，构建词典。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">text = <span class="hljs-string">&quot;The quick brown fox jumps over the lazy dog&quot;</span><br><br><span class="hljs-built_in">dict</span> = &#123;token: i <span class="hljs-keyword">for</span> i, token <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(<span class="hljs-built_in">sorted</span>(<span class="hljs-built_in">set</span>(text.split())))&#125;<br><br><span class="hljs-built_in">dict</span><br></code></pre></td></tr></table></figure>
+
 <p>打印结果如下：</p>
-<p> {‘The’: 0,<br> ‘brown’: 1,<br> ‘dog’: 2,<br> ‘fox’: 3,<br> ‘jumps’: 4,<br> ‘lazy’: 5,<br> ‘over’: 6,<br> ‘quick’: 7,<br> ‘the’: 8}</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">&#123;<span class="hljs-string">&#x27;The&#x27;</span>: <span class="hljs-number">0</span>,<br> <span class="hljs-string">&#x27;brown&#x27;</span>: <span class="hljs-number">1</span>,<br> <span class="hljs-string">&#x27;dog&#x27;</span>: <span class="hljs-number">2</span>,<br> <span class="hljs-string">&#x27;fox&#x27;</span>: <span class="hljs-number">3</span>,<br> <span class="hljs-string">&#x27;jumps&#x27;</span>: <span class="hljs-number">4</span>,<br> <span class="hljs-string">&#x27;lazy&#x27;</span>: <span class="hljs-number">5</span>,<br> <span class="hljs-string">&#x27;over&#x27;</span>: <span class="hljs-number">6</span>,<br> <span class="hljs-string">&#x27;quick&#x27;</span>: <span class="hljs-number">7</span>,<br> <span class="hljs-string">&#x27;the&#x27;</span>: <span class="hljs-number">8</span>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>将原来的英文句子转换成对应词典中的索引</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">text_id = torch.tensor([<span class="hljs-built_in">dict</span>[token] <span class="hljs-keyword">for</span> token <span class="hljs-keyword">in</span> text.split()])<br></code></pre></td></tr></table></figure>
 
@@ -320,6 +322,10 @@
 <p><img src="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202501260009252.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
 <p>注意力机制计算的公式如下：<br><img src="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202501260009281.png" srcset="/img/loading.gif" lazyload></p>
 <p>可以根据这个计算流程图来计算：<br><img src="https://lyj-aliyun.oss-cn-shanghai.aliyuncs.com/test/202501260009310.png" srcset="/img/loading.gif" lazyload alt="picture 1">  </p>
+<p>举例类别：<br>我们新撰写了一篇博客，想要预测博客的阅读量。我们还有一个数据库，里面存放着各种{博客：阅读量}的数据，假设为{1：100, 2：200, 3：300}。<br>待预测的博客就是query, 数据库里已经有的文章就是key,我们计算待预测的博客和数据库里已经有的文章的相似度，也就是Q @ K.T<br>假设相似度为{8,4,1}。在这里我们可以注意到，Q @ K.T的形状已经无视了什么embedding size, dim_q, dim_v，而是最简单，最淳朴的{1, 上下文token数}，表示的是当前token对上下文的注意力权重。</p>
+<p>然后进行softmax操作，将得分进行归一化，得到{0.8,0.15,0.05}。也就是 softmax(Q @ K.T)。我们注意到softmax不会缩维，原来的相似度为{8,4,1}，经过归一化后得到的仍然是1*3形状的矩阵。</p>
+<p>而阅读量作为value：{100,200,300}，我们将相似度与value进行加权求和，即0.8 * 100 + 0.15 * 200 + 0.05 * 300 &#x3D; 125，就是我们待预测文章的阅读量。</p>
+<p>细心的读者可以发现，计算过程中，softmax(Q @ K.T)中 Q @ K.T 还除以了根号dk，这是为什么呢？<br>因为括号内的值是softmax的输入，而</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>代码是经过结构化的，封装了一个self-attention的类，代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SelfAttention</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, d_emb, d_k, d_q, d_v</span>):<br>        torch.manual_seed(<span class="hljs-number">0</span>)<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.d_k = d_k <span class="hljs-comment"># 方便后面除以维度进行缩放</span><br>        <span class="hljs-variable language_">self</span>.get_query = nn.Linear(d_emb, d_q)<br>        <span class="hljs-variable language_">self</span>.get_key = nn.Linear(d_emb, d_k)<br>        <span class="hljs-variable language_">self</span>.get_value = nn.Linear(d_emb, d_v)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, embed</span>):<br>        query = <span class="hljs-variable language_">self</span>.get_query(embed)<br>        key = <span class="hljs-variable language_">self</span>.get_key(embed)<br>        value = <span class="hljs-variable language_">self</span>.get_value(embed)<br><br>        attn_score = query @ key.T<br>        attn_score = torch.softmax(attn_score / <span class="hljs-variable language_">self</span>.d_k ** <span class="hljs-number">0.5</span>, dim = -<span class="hljs-number">1</span>) <span class="hljs-comment"># dim = -1表示最后一个维度，表示按列进行softmax</span><br>        attn_score = attn_score @ value<br>        <br>        <span class="hljs-keyword">return</span> attn_score<br></code></pre></td></tr></table></figure>
 
