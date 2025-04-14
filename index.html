@@ -319,252 +319,7 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/04/07/%E5%B9%B6%E8%A1%8C%E7%AD%96%E7%95%A5/" target="_self">
-          模型训练的并行策略
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/04/07/%E5%B9%B6%E8%A1%8C%E7%AD%96%E7%95%A5/" target="_self">
-        <div>
-          起源于研究生时上分布式课程完全没搞懂，老师念课本讲闲话，压根不知道他在说啥。如今被回旋镖击中，重新整理一下训练大模型时的并行策略。参考博文如下，以下内容对我很有启发：  https://mp.weixin.qq.com/s/_jdATeFy0h_nfDt_bIYTfQ  数据并行 Data Parallelism理论就是在每个GPU上都放置一份完整模型，将数据进行划分，分配到不同GPU上。比如有一
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-04-07 11:46" pubdate>
-              2025-04-07
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B9%B6%E8%A1%8C/">#并行</a>
-            
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>
-            
-              <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">#模型训练</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/03/29/vllm%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1/" target="_self">
-          vllm推理服务
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/29/vllm%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1/" target="_self">
-        <div>
-          vllm推理服务写这篇博客的原因是我经常用的是vllm离线批量推理，不用vllm的推理服务。以此来记录下启动vllm推理服务的步骤： 1. 启动vllm推理服务使用vllm在我们指定的主机和端口上启动一个API服务器，负责用我指定的模型来提供推理服务。 1python -m vllm.entrypoints.openai.api_server --model /opt/data/private/m
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-29 13:49" pubdate>
-              2025-03-29
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vllm/">#vllm</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%AC%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90/" target="_self">
-          服务器公私钥生成
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%AC%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90/" target="_self">
-        <div>
-          连接服务器连了好多次，每次都忘记具体操作步骤。现在有一台新的服务器，记录一下。 服务器公私钥生成操作步骤记录 对于windows系统，打开powershell 输入命令：ssh-keygen -t rsa -C “&#x79;&#111;&#x75;&#114;&#x5f;&#x65;&#x6d;&#97;&#105;&#108;&#64;&#x65;&#120;&#x61;&#x6d;&#112
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-25 10:46" pubdate>
-              2025-03-25
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
-            
-              <a href="/tags/%E5%85%AC%E7%A7%81%E9%92%A5/">#公私钥</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/03/23/lora%E5%8E%9F%E7%90%86%E5%92%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" target="_self">
-          lora原理和代码实现
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/23/lora%E5%8E%9F%E7%90%86%E5%92%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" target="_self">
-        <div>
-          本篇文章结合代码来介绍大模型高效微调技术LoRA，并给出简单的代码实现。 什么是LoRALoRA是一种高效的参数微调技术，引入可训练的低秩分解矩阵来调整模型参数，来适应特定的任务和领域 为什么需要LoRA ft整个大模型训练成本过高 大模型中参数量巨大，可能是冗余的，参数有更小的内在维度  LoRA是如何实现的下面本节将从基本原理与代码实现两个角度介绍LoRA LoRA的基本原理在LoRA的实现中
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-23 22:09" pubdate>
-              2025-03-23
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Lora/">#Lora</a>
-            
-              <a href="/tags/%E4%BB%A3%E7%A0%81/">#代码</a>
-            
-              <a href="/tags/%E7%AC%94%E8%AE%B0/">#笔记</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/03/12/%E8%AF%8D%E6%B1%87%E5%B7%AB%E5%B8%88/" target="_self">
-          词汇巫师演示视频
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/12/%E8%AF%8D%E6%B1%87%E5%B7%AB%E5%B8%88/" target="_self">
-        <div>
-          1&lt;video src=&quot;D:\MyBlogs\source\_posts\video\6d097b91773ba69dc0e50264a03d93b3.mp4&quot; position= &quot;absolute&quot; width=&quot;100%&quot; height=&quot;100%&quot; controls=&quot;controls&quo
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-12 14:33" pubdate>
-              2025-03-12
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/26/%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E5%90%84%E7%A7%8D%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" target="_self">
-          结合代码理解各种注意力机制（二）：多头注意力机制
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/26/%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E5%90%84%E7%A7%8D%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" target="_self">
-        <div>
-          前言这是注意力机制系列的第二篇，在上一篇文章结合代码理解各种注意力机制（一）：自注意力机制中，我们介绍了自注意力机制。此篇文章我们将在自注意力机制的基础上介绍多头注意力机制。 多头注意力机制概念多头注意力机制（Multi-Head Attention）是自注意力机制的扩展，它可以通过不同的子空间，来捕捉更多的信息。 其实，也就是我们可以拥有多组Wq,Wk,Wv，获得多种不同视角的注意力分数，然后将
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-26 00:55" pubdate>
-              2025-01-26
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E4%BB%A3%E7%A0%81/">#代码</a>
-            
-              <a href="/tags/transformer/">#transformer</a>
-            
-              <a href="/tags/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">#注意力机制</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
+          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
         
         <a href="/2025/01/09/%E7%A9%BA%E6%A0%BC%E7%9A%84%E5%91%BC%E5%90%B8/" target="_self">
           【空格的呼吸】基于BPE的Tokenizer 分词原理介绍
@@ -610,15 +365,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/01/03/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E9%80%9A%E8%BF%87syncthing%E5%90%8C%E6%AD%A5/" target="_self">
-          linux服务器之间通过syncthing同步
+          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
+        
+        <a href="/2024/12/25/%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E5%90%84%E7%A7%8D%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" target="_self">
+          结合代码理解各种注意力机制（一）：自注意力机制
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/03/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E9%80%9A%E8%BF%87syncthing%E5%90%8C%E6%AD%A5/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/12/25/%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E5%90%84%E7%A7%8D%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" target="_self">
         <div>
-          背景拥有2台服务器，想在服务器之间同步某个文件夹的数据，实现丝滑工作 步骤1：安装syncthing如果是ubuntu，可以通过apt安装 1sudo apt install syncthing (其他系统可以参考官方文档) 启动syncthing 1syncthing 安装好之后输入syncthing，会启动syncthing，自动打开浏览器。稍后在浏览器中进行配置就好 【注意】在两台服务器上都
+          transformer中最重要的就是注意力机制，从经典论文Attention is all you need出发，到后来的各种注意力机制的改进。本系列将手撕各种注意力机制，包括但不限于：  self-attention(SA) 自注意力机制 multi-head attention(MHA) 多头注意力机制 multi-query attention(MQA) 分组注意力机制  在此系列的第一篇中
         </div>
       </a>
 
@@ -626,8 +383,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-03 11:36" pubdate>
-              2025-01-03
+            <time datetime="2024-12-25 14:55" pubdate>
+              2024-12-25
             </time>
           </div>
         
@@ -636,13 +393,277 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/syncthing/">#syncthing</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81/">#代码</a>
             
-              <a href="/tags/linux/">#linux</a>
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">#注意力机制</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
+        
+        <a href="/2025/01/26/%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E5%90%84%E7%A7%8D%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" target="_self">
+          结合代码理解各种注意力机制（二）：多头注意力机制
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/26/%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E5%90%84%E7%A7%8D%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" target="_self">
+        <div>
+          前言这是注意力机制系列的第二篇，在上一篇文章结合代码理解各种注意力机制（一）：自注意力机制中，我们介绍了自注意力机制。此篇文章我们将在自注意力机制的基础上介绍多头注意力机制。 多头注意力机制概念多头注意力机制（Multi-Head Attention）是自注意力机制的扩展，它可以通过不同的子空间，来捕捉更多的信息。 其实，也就是我们可以拥有多组Wq,Wk,Wv，获得多种不同视角的注意力分数，然后将
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-26 00:55" pubdate>
+              2025-01-26
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BB%A3%E7%A0%81/">#代码</a>
+            
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">#注意力机制</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
+        
+        <a href="/2025/03/23/lora%E5%8E%9F%E7%90%86%E5%92%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" target="_self">
+          lora原理和代码实现
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/23/lora%E5%8E%9F%E7%90%86%E5%92%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          本篇文章结合代码来介绍大模型高效微调技术LoRA，并给出简单的代码实现。 什么是LoRALoRA是一种高效的参数微调技术，引入可训练的低秩分解矩阵来调整模型参数，来适应特定的任务和领域 为什么需要LoRA ft整个大模型训练成本过高 大模型中参数量巨大，可能是冗余的，参数有更小的内在维度  LoRA是如何实现的下面本节将从基本原理与代码实现两个角度介绍LoRA LoRA的基本原理在LoRA的实现中
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-23 22:09" pubdate>
+              2025-03-23
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Lora/">#Lora</a>
+            
+              <a href="/tags/%E4%BB%A3%E7%A0%81/">#代码</a>
+            
+              <a href="/tags/%E7%AC%94%E8%AE%B0/">#笔记</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
+        
+        <a href="/2025/03/29/vllm%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1/" target="_self">
+          vllm推理服务
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/29/vllm%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1/" target="_self">
+        <div>
+          vllm推理服务写这篇博客的原因是我经常用的是vllm离线批量推理，不用vllm的推理服务。以此来记录下启动vllm推理服务的步骤： 1. 启动vllm推理服务使用vllm在我们指定的主机和端口上启动一个API服务器，负责用我指定的模型来提供推理服务。 1python -m vllm.entrypoints.openai.api_server --model /opt/data/private/m
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-29 13:49" pubdate>
+              2025-03-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vllm/">#vllm</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
+        
+        <a href="/2024/12/05/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E5%8F%98%E5%8C%96/" target="_self">
+          torch代码演示模型训练流程中的梯度变化
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/12/05/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%A2%AF%E5%BA%A6%E5%8F%98%E5%8C%96/" target="_self">
+        <div>
+          1234import torch import torch.nn as nnimport torch.optim as optimimport random 一个在标准训练过程如下： 进行前向传播（forward pass），得到中间激活值和计算图，计算 loss。进行反向传播（backward pass），根据计算图来计算梯度，即 loss.backward()。梯度的形状和参数形状一致。更新参
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-12-05 15:55" pubdate>
+              2024-12-05
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%A8%A1%E5%9E%8B/">#模型</a>
+            
+              <a href="/tags/pytorch/">#pytorch</a>
+            
+              <a href="/tags/%E6%A2%AF%E5%BA%A6/">#梯度</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/04/07/%E5%B9%B6%E8%A1%8C%E7%AD%96%E7%95%A5/" target="_self">
+          模型训练的并行策略
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/04/07/%E5%B9%B6%E8%A1%8C%E7%AD%96%E7%95%A5/" target="_self">
+        <div>
+          起源于研究生时上分布式课程完全没搞懂，老师念课本讲闲话，压根不知道他在说啥。如今被回旋镖击中，重新整理一下训练大模型时的并行策略。参考博文如下，以下内容对我很有启发：  https://mp.weixin.qq.com/s/_jdATeFy0h_nfDt_bIYTfQ  数据并行 Data Parallelism理论就是在每个GPU上都放置一份完整模型，将数据进行划分，分配到不同GPU上。比如有一
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-04-07 11:46" pubdate>
+              2025-04-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B9%B6%E8%A1%8C/">#并行</a>
+            
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>
+            
+              <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">#模型训练</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%AC%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90/" target="_self">
+          服务器公私钥生成
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%AC%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90/" target="_self">
+        <div>
+          连接服务器连了好多次，每次都忘记具体操作步骤。现在有一台新的服务器，记录一下。 服务器公私钥生成操作步骤记录 对于windows系统，打开powershell 输入命令：ssh-keygen -t rsa -C “&#121;&#x6f;&#x75;&#x72;&#95;&#x65;&#109;&#97;&#105;&#108;&#64;&#x65;&#x78;&#x61;&#109;&#x70;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-25 10:46" pubdate>
+              2025-03-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
             
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/">#数据同步</a>
+              <a href="/tags/%E5%85%AC%E7%A7%81%E9%92%A5/">#公私钥</a>
             
           </div>
         
