@@ -290,7 +290,7 @@
 <h1 id="turmius文件传输"><a href="#turmius文件传输" class="headerlink" title="turmius文件传输"></a>turmius文件传输</h1><p>安装turmius（学生认证通过可以安装免费教育版），具备文件传输功能，只需要鼠标点点点。<br><img src="/../../images/7fbf67a888386b240927f36d125915b5100d50d61a154ef4a09a2db772a6f4e2.png" srcset="/img/loading.gif" lazyload alt="picture 0"><br>缺点：不具备断点传输功能，容易下载中断</p>
 <h1 id="通过unbuntu利用rsync进行传输"><a href="#通过unbuntu利用rsync进行传输" class="headerlink" title="通过unbuntu利用rsync进行传输"></a>通过unbuntu利用rsync进行传输</h1><p>在windows中安装Linux 发行版（例如 Ubuntu），可以用rsync指令进行断点续传。其中，D盘路径的盘符是&#x2F;mnt&#x2F;d&#x2F;<br>传输指令如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rsync -avz --partial --progress /mnt/d/project/travel_RAG/dify/docker/defy_all.tar username@xx.xx.xx.xxx:/dataST/users/xxx/project/<br></code></pre></td></tr></table></figure>
-<p>其中，<br>&#x2F;mnt&#x2F;d&#x2F;project&#x2F;travel_RAG&#x2F;dify&#x2F;docker&#x2F;defy_all.tar表示windows下的文件位置<br><a href="mailto:&#117;&#x73;&#x65;&#x72;&#110;&#97;&#x6d;&#x65;&#x40;&#120;&#120;&#46;&#x78;&#120;&#x2e;&#120;&#120;&#46;&#120;&#120;&#120;">&#117;&#x73;&#x65;&#x72;&#110;&#97;&#x6d;&#x65;&#x40;&#120;&#120;&#46;&#x78;&#120;&#x2e;&#120;&#120;&#46;&#120;&#120;&#120;</a>表示服务器ssh的连接信息<br>&#x2F;dataST&#x2F;users&#x2F;xxx&#x2F;project&#x2F;表示服务器上的目标路径位置。</p>
+<p>其中，<br>&#x2F;mnt&#x2F;d&#x2F;project&#x2F;travel_RAG&#x2F;dify&#x2F;docker&#x2F;defy_all.tar表示windows下的文件位置<br><a href="mailto:&#x75;&#x73;&#101;&#x72;&#110;&#97;&#x6d;&#101;&#64;&#120;&#x78;&#46;&#120;&#120;&#x2e;&#120;&#x78;&#46;&#x78;&#120;&#x78;">&#x75;&#x73;&#101;&#x72;&#110;&#97;&#x6d;&#101;&#64;&#120;&#x78;&#46;&#120;&#120;&#x2e;&#120;&#x78;&#46;&#x78;&#120;&#x78;</a>表示服务器ssh的连接信息<br>&#x2F;dataST&#x2F;users&#x2F;xxx&#x2F;project&#x2F;表示服务器上的目标路径位置。</p>
 <p>这种方式不仅速度比较快，而且可以断点续传。</p>
 <h1 id="补充-rsync指令"><a href="#补充-rsync指令" class="headerlink" title="补充:rsync指令"></a>补充:rsync指令</h1><p>rsync是一个非常强大的文件传输和同步工具，通常用于在本地和远程计算机之间复制文件和目录。支持断点续传。<br>基本语法如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rsync [选项] 源路径 目标路径<br></code></pre></td></tr></table></figure>
@@ -372,9 +372,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/13/Deepwiki%E8%A7%A3%E8%AF%BBjson_repair%E5%BA%93/" title="">
+                      <a href="/2025/05/13/Deepwiki%E8%A7%A3%E8%AF%BBjson_repair%E5%BA%93/" title="Deepwiki解读json_repair库">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">Deepwiki解读json_repair库</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
